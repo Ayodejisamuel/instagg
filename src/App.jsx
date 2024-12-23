@@ -15,7 +15,7 @@ function App() {
           </HStack> */}
 
           {/* Define routes */}
-          <Routes>
+          <Routes basename='/instagg'>
             <Route path="/" element={<HomePage />} />
             <Route path="/auth" element={<AuthPage />} />
           </Routes>
