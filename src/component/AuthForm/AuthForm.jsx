@@ -3,25 +3,55 @@ import { Box, VStack, Image, Button, Flex, Text } from "@chakra-ui/react";
 import { Input } from "@chakra-ui/react";
 
 const AuthForm = () => {
-  const [ isLoggedIn, setIsLoggedIn ] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
+  const [input, setInput] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleChange = (e) => {
+    setInput({...input, [e.target.name] : [e.target.value]})
+  }
+  const handleAuth = (req, res) => {};
   return (
     <>
       <Box border={"1px solid gray"} borderRadius={4} padding={5}>
         <VStack spacing={4}>
           <Image src="/logo.png" h={24} alt="instagram" />
-          <Input placeholder="enter email" type="email" fontSize={14} />
-          <Input placeholder="enter password" type="password" fontSize={14} />
+          <Input
+            name="email"
+            value={input.email}
+            placeholder="enter email"
+            type="email"
+            fontSize={14}
+          />
+          <Input
+            name="password"
+            value={input.password}
+            placeholder="enter password"
+            type="password"
+            fontSize={14}
+          />
 
           {!isLoggedIn ? (
             <Input
+              name="confirmPassword"
+              value={input.confirmPassword}
               placeholder="confirm password"
               type="password"
               fontSize={14}
             />
           ) : null}
 
-          <Button width={"full"} fontSize={14} size={"sm"} colorScheme="blue">
+          <Button
+            onClick={handleAuth}
+            width={"full"}
+            fontSize={14}
+            size={"sm"}
+            colorScheme="blue"
+          >
             {isLoggedIn ? "Log in" : "Sign up"}
           </Button>
 
@@ -42,12 +72,11 @@ const AuthForm = () => {
             alignItems={"center"}
             cursor={"pointer"}
             justifyContent={"center"}
-        
             w={"full"}
             gap={2}
           >
             <Image src="/google.png" width={5} />
-            <Text>Log in with Google</Text>
+            <Text color={"blue.500"}>Log in with Google</Text>
           </Flex>
         </VStack>
       </Box>
@@ -67,37 +96,13 @@ const AuthForm = () => {
           justifyContent={"center"}
         >
           <Box>
-            {isLoggedIn
-              ? "Dont have an account? "
-              : "Already have an account?"}
+            {isLoggedIn ? "Dont have an account? " : "Already have an account?"}
           </Box>
-          <Box onClick={() => setIsLoggedIn(!isLoggedIn)}>
+          <Box color={"blue.500"} onClick={() => setIsLoggedIn(!isLoggedIn)}>
             {isLoggedIn ? "Sign up" : "Log in"}
           </Box>
         </Flex>
       </Box>
-      {/* <Box display={''}
-        border={"1px solid gray"}
-        my={2}
-        borderRadius={4}
-        padding={5}
-        width={'full'}
-      >
-        <Flex
-          cursor={"pointer"}
-          gap={2}
-          alignItems={"center"}
-          justifyContent={'center'}
-        >
-          <Box fontSize={14} size={"sm"} color={"blue"}>
-            {isLoggedIn ? "Dont have an account? " : "Already have an account"}
-
-            <Box  onClick={() => setIsLoggedIn(!isLoggedIn)}  size={"sm"} color={"blue.500"}>
-            {isLoggedIn ? "Sign up" : 'Log in '}
-            </Box>
-          </Box>
-        </Flex>
-      </Box> */}
     </>
   );
 };
