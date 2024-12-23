@@ -21,11 +21,11 @@ const HomePage = () => {
             </Box>
             <VStack>
            <AuthForm />
-              <Box>Get the App</Box>
+              {/* <Box>Get the App</Box> */}
               <Flex justifyContent={"center"} alignContent={"center"} gap={5}>
                 <Image src="/microsoft.png" h={"10"} alt={"playstore logo"} />
                 <Image src='/playstore.png' h={"10"} alt={"playstore logo"} />
-              </Flex>
+              </Flex> 
             </VStack>
           </Flex>
         </Container>

@@ -8,7 +8,7 @@ function App() {
   return (
     <ChakraProvider>
       <Router>
-        <Box p={4}>
+        <Box>
           {/* <HStack spacing={4}>
             <Button colorScheme="teal">Home</Button>
             <Button colorScheme="teal">Auth</Button>

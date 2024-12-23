@@ -3,7 +3,7 @@ import { Box, VStack, Image, Button, Flex, Text } from "@chakra-ui/react";
 import { Input } from "@chakra-ui/react";
 
 const AuthForm = () => {
-  const { isLoggedIn, setIsLoggedIn } = useState(true);
+  const [ isLoggedIn, setIsLoggedIn ] = useState(true);
 
   return (
     <>
@@ -42,7 +42,7 @@ const AuthForm = () => {
             alignItems={"center"}
             cursor={"pointer"}
             justifyContent={"center"}
-            my={4}
+        
             w={"full"}
             gap={2}
           >
@@ -71,7 +71,7 @@ const AuthForm = () => {
               ? "Dont have an account? "
               : "Already have an account?"}
           </Box>
-          <Box onClick={() => setIsLoggedIn(false)}>
+          <Box onClick={() => setIsLoggedIn(!isLoggedIn)}>
             {isLoggedIn ? "Sign up" : "Log in"}
           </Box>
         </Flex>
