@@ -3,10 +3,12 @@ import { Box, VStack, Image, Button, Flex, Text } from "@chakra-ui/react";
 import { Input } from "@chakra-ui/react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const AuthForm = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
+  const navigate = useNavigate()
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -31,6 +33,8 @@ const AuthForm = () => {
       return;
       
     }
+
+    navigate('/')
   };
   return (
     <>
