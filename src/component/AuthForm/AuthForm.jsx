@@ -26,7 +26,11 @@ const AuthForm = () => {
 
   }
   const handleAuth = () => {
-    console.log('inputs', input)
+    if(!input.email || !input.password || !input.confirmPassword) {
+      toast.error("All fields are required", toastOptions);
+      return;
+      
+    }
   };
   return (
     <>
@@ -119,6 +123,7 @@ const AuthForm = () => {
           </Box>
         </Flex>
       </Box>
+      <ToastContainer />
     </>
   );
 };
