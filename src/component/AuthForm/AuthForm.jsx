@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Box, VStack, Image, Button, Flex, Text } from "@chakra-ui/react";
 import { Input } from "@chakra-ui/react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AuthForm = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -10,17 +12,29 @@ const AuthForm = () => {
     password: "",
     confirmPassword: "",
   });
+  const toastOptions = {
+    position: "bottom-right",
+    autoClose: "8000ms",
+    pauseOnHover: true,
+    draggable: true,
+    theme: "dark",
+  };
 
+  
   const handleChange = (e) => {
     setInput({...input, [e.target.name] : [e.target.value]})
+
   }
-  const handleAuth = (req, res) => {};
+  const handleAuth = () => {
+    console.log('inputs', input)
+  };
   return (
     <>
       <Box border={"1px solid gray"} borderRadius={4} padding={5}>
         <VStack spacing={4}>
           <Image src="/logo.png" h={24} alt="instagram" />
           <Input
+          onChange={handleChange}
             name="email"
             value={input.email}
             placeholder="enter email"
@@ -28,6 +42,7 @@ const AuthForm = () => {
             fontSize={14}
           />
           <Input
+          onChange={handleChange}
             name="password"
             value={input.password}
             placeholder="enter password"
@@ -37,6 +52,7 @@ const AuthForm = () => {
 
           {!isLoggedIn ? (
             <Input
+            onChange={handleChange}
               name="confirmPassword"
               value={input.confirmPassword}
               placeholder="confirm password"
