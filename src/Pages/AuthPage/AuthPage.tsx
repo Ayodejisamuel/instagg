@@ -17,14 +17,14 @@ const AuthPage = () => {
         <Container maxW={"container.md"} padding={0}>
           <Flex gap={10} justifyContent={'center'} alignItems={'center'}>
             <Box display={{ base: "none", md: "block" }}>
-              <Image src="/auth.png" alt="phone-img" />
+              <Image src="auth.png" alt="phone-img" />
             </Box>
             <VStack>
            <AuthForm />
               {/* <Box>Get the App</Box> */}
               <Flex justifyContent={"center"} alignContent={"center"} gap={5}>
-                <Image src="/microsoft.png" h={"10"} alt={"playstore logo"} />
-                <Image src='/playstore.png' h={"10"} alt={"playstore logo"} />
+                <Image src="microsoft.png" h={"10"} alt={"playstore logo"} />
+                <Image src='playstore.png' h={"10"} alt={"playstore logo"} />
               </Flex> 
             </VStack>
           </Flex>
