@@ -7,15 +7,9 @@ import './App.css';
 function App() {
   return (
     <ChakraProvider>
-      <Router>
+      <Router basename="/instagg">
         <Box>
-          {/* <HStack spacing={4}>
-            <Button colorScheme="teal">Home</Button>
-            <Button colorScheme="teal">Auth</Button>
-          </HStack> */}
-
-          {/* Define routes */}
-          <Routes basename='/instagg'>
+          <Routes >
             <Route path="/" element={<HomePage />} />
             <Route path="/auth" element={<AuthPage />} />
           </Routes>
