@@ -23,7 +23,7 @@ const theme = extendTheme({ config, styles })
  
 createRoot(document.getElementById('root')).render(
   <StrictMode>
- <ChakraProvider  theme={theme}/>
+ <ChakraProvider   theme={theme}/>
     <App />
  <ChakraProvider />
   </StrictMode>,
