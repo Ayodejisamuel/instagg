@@ -1,15 +1,28 @@
 import React from "react";
-import { Box, Container, Flex, VStack, Image } from "@chakra-ui/react";
-import { base } from "framer-motion/client";
-import AuthForm from "../../component/AuthForm/AuthForm";
-import { Input } from "@chakra-ui/react";
-
+import { Container, Flex, Box } from "@chakra-ui/react";
+import FeedPosts from "../../component/FeedPosts/FeedPosts";
 
 const HomePage = () => {
   return (
     <>
-    Homepage
-     </>
+      <Container maxW={"container.lg"}>
+        <Flex gap={20}>
+          <Box flex={3} ml={20} py={10} >
+            <FeedPosts />
+          </Box>
+          <Box
+            flex={2}
+            mr={20}
+  
+            py={5}
+            maxW={"300px"}
+            display={{ base: "none", md: "block" }}
+          >
+            Suggested
+          </Box>
+        </Flex>
+      </Container>
+    </>
   );
 };
 
