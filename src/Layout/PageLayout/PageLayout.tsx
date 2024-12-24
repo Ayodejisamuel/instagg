@@ -8,15 +8,15 @@ const PageLayout = ({ children }) => {
   return (
     <div>
       <Flex>
-        {pathname !== "/auth" ? (
-          <Box width={{ base: "70px", md: "240px" }}>
-            <Sidebar />
-          </Box>
-        ) : null}
+      {!pathname.toLowerCase().includes("/auth") ? (
+  <Box width={{ base: "70px", md: "240px" }}>
+    <Sidebar />
+  </Box>
+) : null}
 
         <Box
           flex={1}
-          width={{ base: "calc(100% - 70px)", md: "calc(100% - 240%)" }}
+          width={{ base: "calc(100% - 70px)", md: "calc(100% - 240px)" }}
         >
           {children}
         </Box>
