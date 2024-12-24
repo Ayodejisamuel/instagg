@@ -1,58 +1,37 @@
 import React from "react";
-import { Box, Flex, Icon, } from "@chakra-ui/react";
+import { Box, Flex, Avatar, Text, Tooltip } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { InstagramLogo, InstagramMobileLogo } from "../../assets/constants";
-import { Tooltip } from "@chakra-ui/react";
+import { InstagramLogo, InstagramMobileLogo, CreatePostLogo, SearchLogo, NotificationsLogo } from "../../assets/constants";
+import { AiFillHome } from "react-icons/ai";
 
 const Sidebar = () => {
-
-    const sidebarItems = [
-
-        {
-            Icon: 'Home',
-            text: 'Home',
-            link: '/'
-            
-        
-        },
-
-        {
-            Icon: 'Home',
-            text: 'Search',
-        
-            
-        
-        },
-        {
-            Icon: 'NotificationsLogo',
-            text: 'Notifications',
-            link: '/'
-            
-        
-        },
-        {
-            Icon: 'CretePost',
-            text: "Create",
-            link: '/'
-            
-        
-        },
-        {
-            Icon: 'ProfilePicture',
-            text: 'Profile',
-            link: '/'
-            
-        
-        },
-        {
-            Icon: 'Home',
-            text: 'Home',
-            link: '/'
-            
-        
-        },
-    ]
-
+  const sidebarItems = [
+    {
+      Icon: <AiFillHome size={25} />,
+      text: "Home",
+      link: "/",
+    },
+    {
+      Icon: <SearchLogo />,
+      text: "Search",
+      link: "/search",
+    },
+    {
+      Icon: <NotificationsLogo />,
+      text: "Notifications",
+      link: "/notifications",
+    },
+    {
+      Icon: <CreatePostLogo />,
+      text: "Create",
+      link: "/create",
+    },
+    {
+      Icon: <Avatar size="sm" name="Samuel" src="/profilepic.png" />,
+      text: "Profile",
+      link: "/asaprogrammer",
+    },
+  ];
 
   return (
     <Box
@@ -60,51 +39,66 @@ const Sidebar = () => {
       borderRight="1px solid"
       borderColor="whiteAlpha.300"
       py={8}
-      position={'sticky'}
+      position="sticky"
       top={0}
       left={0}
       px={{ base: 2, md: 4 }}
     >
       <Flex direction="column" gap={10} w="full" height="full">
         {/* Desktop Logo */}
-        <Link
-          to={'/'}
+        <Box
+        as={Link}
+          to="/"
           pl={2}
           display={{ base: "none", md: "block" }}
           cursor="pointer"
           _hover={{ bg: "whiteAlpha.200", borderRadius: "md", padding: 2 }}
-        > 
+        >
           <InstagramLogo />
-        </Link>
+        </Box>
 
         {/* Mobile Logo */}
-        <Link
-          to={'/'}
+        <Box
+        as={Link}
+          to="/"
           p={2}
-          display ={{ base: "block", md: "none" }}
+          display={{ base: "block", md: "none" }}
           borderRadius={6}
           _hover={{ bg: "whiteAlpha.200" }}
           w={10}
           cursor="pointer"
         >
           <InstagramMobileLogo />
-        </Link>
+        </Box>
 
-        <Flex direction={'column'}gap={5} cursor={'pointer'}>
-
-        {sidebarItems.map((item,index) => (
+        {/* Sidebar Items */}
+        <Flex direction="column" gap={5}>
+          {sidebarItems.map((item, index) => (
             <Tooltip
-            key={index}
-            label={item.text}
-            placement='right'
-            openDelay={500}
-            display={{base:'block', md:'none'}}
+              key={index}
+              label={item.text}
+              placement="right"
+              openDelay={500}
+              hasArrow
+              display={{base:'block', md:'none'}}
             >
-
-
+              <Box
+                as={Link}
+                to={item.link || "#"}
+                display="flex"
+                alignItems="center"
+                gap={4}
+                _hover={{ bg: "whiteAlpha.400" }}
+                borderRadius={6}
+                p={2}
+              >
+                {item.Icon}
+                <Text display={{ base: "none", md: "block" }} fontSize="sm">
+                  {item.text}
+                </Text>
+              </Box>
             </Tooltip>
-        ))}
-
+          ))}
         </Flex>
       </Flex>
     </Box>
