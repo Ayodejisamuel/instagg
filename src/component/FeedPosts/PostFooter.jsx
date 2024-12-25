@@ -1,37 +1,47 @@
 import { Flex, Box, Text } from "@chakra-ui/react";
-import { NotificationsLogo, UnlikeLogo } from "../../assets/constants";
+import { CommentLogo, NotificationsLogo, UnlikeLogo } from "../../assets/constants";
 import { useState } from "react";
 
 const PostFooter = () => {
-    const [count, setCount] = useState(1000)
-    
-    const handleCount = () => {
-setCount(count - 1 )
+  const [isLike, setIsLike] = useState(false);
+  const [likes, setLikes] = useState(1000);
 
+  const handleLike =() => {
+    if(isLike ) {
+       
+        setLikes(likes - 1)
+
+    }else {
+   
+        setLikes(likes + 1)
     }
 
+    setIsLike(!isLike)
+  }
 
   return (
-    <>
+
       <Flex direction={"column"}>
-        <Box onClick={handleCount}>
-        <Flex>
-          <NotificationsLogo />
-          <UnlikeLogo />
-        </Flex>
-        </Box>
+        <Box onClick={handleLike} cursor={'pointer'} fontSize={18}>
+          
+            <Flex gap={3} my={4}>
+              {!isLike ? <NotificationsLogo /> : <UnlikeLogo />}
+              <CommentLogo />
+            </Flex>
         
-        <Text>{count} likes</Text>
-        <Flex alignItems={"center"} justifyContent={"left"} gap={2}>
-          <Text fontSize={12} fontWeight={"bold"}>
-            ayodeji
-          </Text>{" "}
-          <Text>feeling good</Text>
+        </Box>
+
+        <Text fontWeight={600} fontSize={'sm'}>{likes} likes</Text>
+        <Flex alignItems={"center"} fontSize={'sm'} my={1} justifyContent={"left"} gap={2}>
+          <Text fontSize={'sm'} fontWeight={700}>
+            determinant_
+          </Text>
+          <Text fontWeight={400} >feeling good</Text>
         </Flex>
 
-        <Text>View all 1000 paticipants</Text>
+        <Text fontSize={'sm'} fontWeight={400} color={'gray'}>View all 1000 paticipants</Text>
       </Flex>
-    </>
+
   );
 };
 
