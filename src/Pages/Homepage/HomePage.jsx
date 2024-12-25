@@ -7,7 +7,7 @@ const HomePage = () => {
     <>
       <Container maxW={"container.lg"}>
         <Flex gap={20}>
-          <Box flex={3} ml={20} py={10} >
+          <Box flex={3}  py={10} >
        <FeedData />
           </Box>
           <Box

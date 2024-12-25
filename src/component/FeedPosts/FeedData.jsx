@@ -56,7 +56,7 @@ const FeedData = () => {
                 w='full'
               >
                 <Flex gap={2} alignItems='center'  width='full'>
-                  {" "}
+    
                   <SkeletonCircle size="10"  />
                   <Skeleton height="10px" width="100px" />
                 </Flex>
