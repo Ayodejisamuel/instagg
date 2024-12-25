@@ -46,19 +46,19 @@ const FeedData = () => {
     <Container maxW="container.lg" py={4}>
       {isLoading
         ? [0, 1, 2, 3].map((_, index) => (
-            <VStack key={index} gap={4} alignItems="flex-start" mb={6}>
+            <VStack key={index}   mb={6}>
               <Flex
                 alignItems="center"
-                justifyContent="space-between"
+                justifyContent="space-around"
                 gap={2}
                 p={6}
                 boxShadow="lg"
-                w="full"
+                w='full'
               >
-                <Flex gap={2} alignItems="center">
+                <Flex gap={2} alignItems='center'  width='full'>
                   {" "}
-                  <SkeletonCircle size="10" />
-                  <Skeleton height="10px" width="200px" />
+                  <SkeletonCircle size="10"  />
+                  <Skeleton height="10px" width="100px" />
                 </Flex>
 
                 <Skeleton height="10px" width="50px" />
