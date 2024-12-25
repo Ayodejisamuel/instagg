@@ -1,13 +1,13 @@
 import { Image, Box, Text, Link, Flex, Avatar } from "@chakra-ui/react";
 // import  Link  from "react-router-dom";
 
-const PostHeader = () => {
+const PostHeader = ({username, avatar}) => {
   return (
     
       <Flex justifyContent={"space-between"} py={2} alignItems={"center"}>
         <Flex gap={2} alignItems={"center"}>
-          <Avatar size="sm" src="/instagg/profilepic.jpg" alt={"profilepic"} />
-          <Text fontSize={12} fontWeight={'bold'}>determinant_</Text>
+          <Avatar size="sm" src={avatar} alt={"profilepic"} />
+          <Text fontSize={12} fontWeight={'bold'}>{username}</Text>
           <Text fontSize={12} color={"gray.500"}>
             .1w
           </Text>

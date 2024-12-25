@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Flex, Box } from "@chakra-ui/react";
-import FeedPosts from "../../component/FeedPosts/FeedPosts";
+ import FeedData from "../../component/FeedPosts/FeedData";
 
 const HomePage = () => {
   return (
@@ -8,9 +8,7 @@ const HomePage = () => {
       <Container maxW={"container.lg"}>
         <Flex gap={20}>
           <Box flex={3} ml={20} py={10} >
-            <FeedPosts />
-            <FeedPosts />
-            <FeedPosts />
+       <FeedData />
           </Box>
           <Box
             flex={2}

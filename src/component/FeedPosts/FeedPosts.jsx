@@ -2,12 +2,12 @@ import PostHeader from "./PostHeader";
 import PostFooter from './PostFooter';
 import { Avatar, Image } from '@chakra-ui/react';
 
-const FeedPosts = () => {
+const FeedPosts = ({avatar, username, img}) => {
     return (
         <>
-            <PostHeader />
-            <Image w={'full'} src='/instagg/profilepic.jpg' />
-            <PostFooter />
+            <PostHeader  avatar={avatar}  username={username}/>
+            <Image w={'full'} borderRadius={4} overflow={'hidden'} src={img} />
+            <PostFooter username={username}/>
         </>
 
     );

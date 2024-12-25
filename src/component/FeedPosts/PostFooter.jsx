@@ -7,7 +7,7 @@ import {
 import { useState } from "react";
 import { span } from "framer-motion/client";
 
-const PostFooter = () => {
+const PostFooter = ({username}) => {
   const [isLike, setIsLike] = useState(false);
   const [likes, setLikes] = useState(1000);
 
@@ -40,7 +40,7 @@ const PostFooter = () => {
         gap={2}
       >
         <Text fontSize={"sm"} fontWeight={700}>
-          determinant_
+        {username}
         </Text><Text as={span} fontWeight={400}>Feeling good</Text>
       </Flex>
 
