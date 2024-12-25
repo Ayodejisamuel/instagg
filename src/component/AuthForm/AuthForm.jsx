@@ -5,6 +5,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
+
+
 const AuthForm = () => {
 
   const navigate = useNavigate()
@@ -13,6 +15,7 @@ const AuthForm = () => {
     email: "",
     password: "",
     confirmPassword: "",
+
   });
   const toastOptions = {
     position: "bottom-right",
@@ -22,8 +25,7 @@ const AuthForm = () => {
     theme: "dark",
   };
 
-  
-  const handleChange = (e) => {
+const handleChange = (e) => {
     setInput({...input, [e.target.name] : [e.target.value]})
 
   }

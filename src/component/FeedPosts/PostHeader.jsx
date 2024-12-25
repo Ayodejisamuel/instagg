@@ -7,7 +7,7 @@ const PostHeader = () => {
       <Flex justifyContent={"space-between"} py={2} alignItems={"center"}>
         <Flex gap={2} alignItems={"center"}>
           <Avatar size="sm" src="/instagg/profilepic.jpg" alt={"profilepic"} />
-          <Text fontSize={12} fontWeight={'bold'}>ayodeji</Text>{" "}
+          <Text fontSize={12} fontWeight={'bold'}>ayodeji</Text>
           <Text fontSize={12} color={"gray.500"}>
             .1w
           </Text>
