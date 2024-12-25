@@ -3,11 +3,11 @@ import { Image, Box, Text, Link, Flex, Avatar } from "@chakra-ui/react";
 
 const PostHeader = () => {
   return (
-    <>
+    
       <Flex justifyContent={"space-between"} py={2} alignItems={"center"}>
         <Flex gap={2} alignItems={"center"}>
           <Avatar size="sm" src="/instagg/profilepic.jpg" alt={"profilepic"} />
-          <Text fontSize={12} fontWeight={'bold'}>ayodeji</Text>
+          <Text fontSize={12} fontWeight={'bold'}>determinant_</Text>
           <Text fontSize={12} color={"gray.500"}>
             .1w
           </Text>
@@ -23,7 +23,7 @@ const PostHeader = () => {
           unfollow
         </Box>
       </Flex>
-    </>
+  
   );
 };
 
