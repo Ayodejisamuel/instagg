@@ -1,4 +1,4 @@
-import { VStack, Flex, Box, } from "@chakra-ui/react";
+import { VStack, Flex, Box, Link } from "@chakra-ui/react";
 import SuggestedHeader from "./SuggestedHeader";
 import SuggestedUserData from "./SuggestedUserData";
 
@@ -18,12 +18,25 @@ const SuggestedUsers = () => {
         <Box fontSize={"sm"}>See All</Box>
       </Flex>
 
- <SuggestedUserData name='ishola_faith10' avatar='https://bit.ly/dan-abramov' followers={1239}/>
- <SuggestedUserData name='Ryan Florence' followers={4004} avatar='/instagg/img3.png' />
- <SuggestedUserData name='Christan Nwamba ' followers={1034} avatar='/instagg/img2.png'/>
- {/* <SuggestedUserData /> */}
- 
-      
+      <SuggestedUserData
+        name="ishola_faith10"
+        avatar="https://bit.ly/dan-abramov"
+        followers={1239}
+      />
+      <SuggestedUserData
+        name="Ryan Florence"
+        followers={4004}
+        avatar="/instagg/img3.png"
+      />
+      <SuggestedUserData
+        name="Christan Nwamba "
+        followers={1034}
+        avatar="/instagg/img2.png"
+      />
+      <Box  alignSelf={'start'} fontSize={12 } >
+copyright: Copyright 2024 
+<Link mx={3} target=' _blank' color={'blue.500'} to="https://ayodejisamuel.github.io/instagg/"  _hover={{textDecoration:'none'}}>AyodejiSamuel</Link>
+      </Box>
     </VStack>
   );
 };
