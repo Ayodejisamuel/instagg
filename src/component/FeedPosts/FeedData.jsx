@@ -5,7 +5,6 @@ import {
   Flex,
   Container,
   SkeletonCircle,
-  SkeletonText,
   Skeleton,
   Box,
 } from "@chakra-ui/react";

@@ -19,8 +19,8 @@ const SuggestedUsers = () => {
       </Flex>
 
  <SuggestedUserData name='ishola_faith10' avatar='https://bit.ly/dan-abramov' followers={1239}/>
- <SuggestedUserData name='Ryan Florence' followers={4004} avatar='/instagg/img1.png' />
- <SuggestedUserData name='Christan Nwamba ' followers={1034} avatar='https://bit.ly/dan-abramov'/>
+ <SuggestedUserData name='Ryan Florence' followers={4004} avatar='/instagg/img3.png' />
+ <SuggestedUserData name='Christan Nwamba ' followers={1034} avatar='/instagg/img2.png'/>
  {/* <SuggestedUserData /> */}
  
       

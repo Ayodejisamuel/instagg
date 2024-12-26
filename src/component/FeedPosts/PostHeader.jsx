@@ -1,5 +1,5 @@
-import { Image, Box, Text, Link, Flex, Avatar } from "@chakra-ui/react";
-// import  Link  from "react-router-dom";
+import { Box, Text, Link, Flex, Avatar } from "@chakra-ui/react";
+ 
 
 const PostHeader = ({ username, avatar }) => {
   return (
