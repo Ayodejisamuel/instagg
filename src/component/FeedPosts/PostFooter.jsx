@@ -22,12 +22,12 @@ const PostFooter = ({username}) => {
 
   return (
     <Flex direction={"column"} mb={10}>
-      <Box onClick={handleLike} cursor={"pointer"} fontSize={18}>
-        <Flex gap={3} my={4}>
+      <Flex fontSize={18}>
+        <Flex cursor={"pointer"} gap={3} my={4}  onClick={handleLike}>
           {!isLike ? <NotificationsLogo /> : <UnlikeLogo />}
-          <CommentLogo />
+          <Flex><CommentLogo /></Flex>
         </Flex>
-      </Box>
+      </Flex>
 
       <Text fontWeight={600} fontSize={"sm"}>
         {likes} likes
