@@ -6,7 +6,7 @@ import SuggestedUsers from "../../component/SuggestedUser/SuggestedUsers";
 
 const HomePage = () => {
   return (
-    <>
+    
       <Container maxW={"container.lg"}>
         <Flex gap={20}>
           <Box flex={3} py={{ base: 5, md: 12 }}>
@@ -23,7 +23,7 @@ const HomePage = () => {
           </Box>
         </Flex>
       </Container>
-    </>
+  
   );
 };
 

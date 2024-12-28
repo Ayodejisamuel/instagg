@@ -31,7 +31,7 @@ const Sidebar = () => {
     {
       Icon: <Avatar size="sm" name="Aamuel" src="https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/profilepic_sbwsbl.jpg" />,
       text: "Profile",
-      link: "/asaprogrammer",
+      link: "/determinant",
     },
   ];
 
