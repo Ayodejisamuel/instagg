@@ -15,7 +15,7 @@ const ProfileHeader = () => {
       gap={{ base: 4, sm: 10 }}
       py={10}
     >
-      <AvatarGroup size={{ base: "xl", md: "2xl" }}>
+      <AvatarGroup size={{ base: "xl", md: "2xl" } } justifySelf={'center'} mx={'auto'} alignItems={'center'}>
         <Avatar
           name="determinant_"
           src="https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/profilepic_sbwsbl.jpg"
