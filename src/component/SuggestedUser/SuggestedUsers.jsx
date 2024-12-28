@@ -32,7 +32,7 @@ const SuggestedUsers = () => {
         name="Christan Nwamba "
         followers={1034}
         avatar="/instagg/img2.png"
-      />
+      />      
       <Box  alignSelf={'start'} fontSize={12 } >
 copyright: Copyright 2024 
 <Link mx={3} target=' _blank' color={'blue.500'} to="https://ayodejisamuel.github.io/instagg/"  _hover={{textDecoration:'none'}}>AyodejiSamuel</Link>
