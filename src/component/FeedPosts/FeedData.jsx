@@ -16,22 +16,22 @@ const FeedData = () => {
     {
       username: "johndoe",
       img: "/instagg/img4.png",
-      avatar: "/instagg/img4.png",
+      avatar: "https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358633/img4_t1spsf.jpg",
     },
     {
       username: "determinant_",
       img: "/instagg/profilepic.jpg",
-      avatar: "/instagg/profilepic.jpg",
+      avatar: "https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/profilepic_sbwsbl.jpg",
     },
     {
       username: "ishola_faith10",
       img: "/instagg/img3.png",
-      avatar: "/instagg/img3.png",
+      avatar: "https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/img3_j6if3q.jpg",
     },
     {
       username: "maverick_",
       img: "/instagg/img2.png",
-      avatar: "/instagg/img2.png",
+      avatar: "https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/img2_jtbspt.jpg",
     },
   ];
 

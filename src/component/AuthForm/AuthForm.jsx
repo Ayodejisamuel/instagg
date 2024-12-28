@@ -42,7 +42,7 @@ const handleChange = (e) => {
     <>
       <Box border={"1px solid gray"} borderRadius={4} padding={5}>
         <VStack spacing={4}>
-          <Image src="logo.png" h={24} alt="instagram" />
+          <Image src="https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358629/logo_duz9yo.png" h={24} alt="instagram" />
           <Input
           onChange={handleChange}
             name="email"
@@ -101,14 +101,14 @@ const handleChange = (e) => {
             w={"full"}
             gap={2}
           >
-            <Image src="google.png" width={5} />
+            <Image src="https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358629/google_oxrv4j.png" width={5} />
             <Text color={"blue.500"}>Log in with Google</Text>
           </Flex>
         </VStack>
       </Box>
 
       <Box
-        display={""}
+    
         border={"1px solid gray"}
         my={2}
         borderRadius={4}
