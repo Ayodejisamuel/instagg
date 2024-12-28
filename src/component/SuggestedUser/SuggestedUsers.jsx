@@ -3,6 +3,7 @@ import SuggestedHeader from "./SuggestedHeader";
 import SuggestedUserData from "./SuggestedUserData";
 import { useEffect, useState } from "react";
 import { Skeleton, SkeletonCircle } from "@chakra-ui/react";
+ 
 
 
 const SuggestedUsers = () => {
@@ -57,23 +58,29 @@ setIsLoading(false)
         <Box fontSize={"sm"} fontWeight={400} color={"gray"}>
           Suggested for you
         </Box>
-        <Box fontSize={"sm"}>See All</Box>
+        <Box as={Link} color={'whiteAlpha'} _hover={{textDecoration:'none', color:'blue.500'}} cursor='pointer' fontSize={"sm"}>See All</Box>
       </Flex>
 
       <SuggestedUserData
-        name="ishola_faith10"
-        avatar="https://bit.ly/dan-abramov"
+        name="Jenifa_Lane"
+        avatar="https://res.cloudinary.com/dfkiftgfj/image/upload/v1733921481/samples/upscale-face-1.jpg"
+        followers={1239}
+      />
+
+<SuggestedUserData
+        name="jerry_james"
+        avatar=" https://res.cloudinary.com/dfkiftgfj/image/upload/v1733921471/samples/people/smiling-man.jpg"
         followers={1239}
       />
       <SuggestedUserData
         name="Ryan Florence"
         followers={4004}
-        avatar="https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/img3_j6if3q.jpg"
+        avatar=" https://res.cloudinary.com/dfkiftgfj/image/upload/v1733921480/samples/man-portrait.jpg"
       />
       <SuggestedUserData
         name="Christan Nwamba "
         followers={1034}
-        avatar="https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/img2_jtbspt.jpg"
+        avatar=" https://res.cloudinary.com/dfkiftgfj/image/upload/v1733921479/samples/smile.jpg"
       />
       <Box alignSelf={"start"} fontSize={12}>
         copyright: Copyright 2024
@@ -82,7 +89,7 @@ setIsLoading(false)
           target=" _blank"
           color={"blue.500"}
           to="https://ayodejisamuel.github.io/instagg/"
-          _hover={{ textDecoration: "none" }}
+          _hover={{ textDecoration: "none", color: 'white'}}
         >
           AyodejiSamuel
         </Link>
