@@ -87,11 +87,11 @@ const ProfileHeader = () => {
           </Text>
         </Flex>
         <Flex
-          justifyContent={{ base: "center", md: "center" }}
-          mx={{ base: "auto", md: "1" }}
+           justifyContent={{ base: "center", md: "center" }}
+           mx={{ base: "auto", md: "1" }}
           fontSize={"sm"}
         >
-          Let's travel and discover new horizon'
+          Travel and Discover More'
         </Flex>
       </VStack>
     </Flex>
