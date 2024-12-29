@@ -7,7 +7,7 @@ import {
 import { useState } from "react";
 import { span } from "framer-motion/client";
 
-const PostFooter = ({username}) => {
+const PostFooter = ({username, isProfilePage}) => {
   const [isLike, setIsLike] = useState(false);
   const [likes, setLikes] = useState(1000);
 
@@ -21,7 +21,7 @@ const PostFooter = ({username}) => {
   };
 
   return (
-    <Flex direction={"column"} mb={10}>
+    <Flex direction={"column"}  >
       <Flex fontSize={18}>
         <Flex cursor={"pointer"} gap={3} my={4}  onClick={handleLike}>
           {!isLike ? <NotificationsLogo /> : <UnlikeLogo />}
@@ -32,21 +32,23 @@ const PostFooter = ({username}) => {
       <Text fontWeight={600} fontSize={"sm"}>
         {likes} likes
       </Text>
-      <Flex
+    
+  {!isProfilePage && <>
+    <Flex
         alignItems={"center"}
         fontSize={"sm"}
         my={1}
         justifyContent={"left"}
         gap={2}
       >
-        <Text fontSize={"sm"} fontWeight={700}>
+    <Text fontSize={"sm"} fontWeight={700}>
         {username}
         </Text><Text as={span} fontWeight={400}>Feeling good</Text>
       </Flex>
 
       <Text fontSize={"sm"} fontWeight={400} color={"gray"}>
         View all {likes} likes
-      </Text>
+      </Text></>}
 
       <Box>
         <InputGroup >

@@ -341,7 +341,7 @@ const ProfilePost = () => {
       >
         <ModalOverlay />
         <ModalContent>
-          {/* <ModalCloseButton /> */}
+          <ModalCloseButton />
           <ModalBody bg={"#1a202c"} p={10}>
             <Flex
               gap={4}
@@ -425,7 +425,7 @@ const ProfilePost = () => {
                   />
                 </VStack>
                 <Divider my={4} bg={"gray.500"} />
-                <PostFooter />
+                <PostFooter  isProfilePage={true}/>
               </Flex>
             </Flex>
           </ModalBody>
