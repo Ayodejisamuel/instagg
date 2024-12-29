@@ -91,7 +91,7 @@ const ProfileHeader = () => {
            mx={{ base: "auto", md: "1" }}
           fontSize={"sm"}
         >
-          I love Traveling'
+          I love Traveling
         </Flex>
       </VStack>
     </Flex>
