@@ -28,11 +28,10 @@ const ProfileHeader = () => {
       </AvatarGroup>
       <VStack alignItems={"start"} gap={2} w={"full"} mx={"auto"} flex={1}>
         <Flex
-          direction={{ base: "column", sm: "row" }}
-          justifyContent={{base:'center', md:'center'}}
-          mx={{base: 'auto', md:'1'}}
-          alignItems={"center"}
-          w={"full"}
+        alignItems={"center"}
+        justifyContent={{ base: "center", md: "center" }}
+        mx={{ base: "auto", md: "1" }}
+        
            gap={4}
         >
           <Text fontSize={{ base: "sm", md: "lg" }} color={"whiteAlpha"}>
