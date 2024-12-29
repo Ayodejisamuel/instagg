@@ -10,6 +10,7 @@ const ProfileTabs = () => {
       textTransform={"uppercase"}
       fontWeight={"bold"}
       color={"white"}
+      mb={'5'}
     >
       <Flex
         borderTop={"1px solid white"}
