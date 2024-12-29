@@ -9,7 +9,7 @@ const ProfileTabs = () => {
       gap={{ base: 4, sm: 10 }}
       textTransform={"uppercase"}
       fontWeight={"bold"}
-      color={'white'}
+      color={"white"}
     >
       <Flex
         borderTop={"1px solid white"}
