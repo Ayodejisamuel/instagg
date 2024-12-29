@@ -7,8 +7,9 @@ const ProfilePost = () => {
 
   // Array of image URLs
   const imageUrls = [
+    'https://res.cloudinary.com/dfkiftgfj/image/upload/v1733921480/samples/man-portrait.jpg',
     "https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358633/img4_t1spsf.jpg",
-    "https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/profilepic_sbwsbl.jpg",
+    'https://res.cloudinary.com/dfkiftgfj/image/upload/v1733921481/samples/upscale-face-1.jpg',
     "https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/img3_j6if3q.jpg",
     " https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/img2_jtbspt.jpg",
   ];
@@ -36,7 +37,7 @@ const ProfilePost = () => {
         md: "repeat(2, 1fr)", 
         lg: "repeat(3, 1fr)",
       }}
-      gap={4} // Adjust gap for better spacing
+      gap={4} 
     >
       {imageUrls.map((img, index) => (
         <ProfileData key={index} img={img} />
