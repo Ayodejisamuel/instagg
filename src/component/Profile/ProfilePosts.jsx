@@ -4,8 +4,10 @@ import {
   VStack,
   Box,
   Flex,
+
   Text,
   Image,
+  Avatar,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -17,6 +19,7 @@ import {
 import { useEffect, useState } from "react";
 import { AiFillHeart } from "react-icons/ai";
 import { FaComment } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
 const ProfilePost = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -118,24 +121,69 @@ const ProfilePost = () => {
       )}
 
       {/* Modal */}
-      <Modal isOpen={isOpen} onClose={onClose} isCentered={true} size={{base: 'sm', md: 'lg'}} height={'300px'} w={'80%'} mx={'auto'}>
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        isCentered={true}
+        size={{ base: "sm", md: "2xl" }}
+        height={"300px"}
+        w={"80%"}
+        mx={"auto"}
+      >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Image Details</ModalHeader>
+          {/* <ModalHeader>Image Details</ModalHeader> */}
           <ModalCloseButton />
-          <ModalBody>
-            {selectedImage && (
-              <Image   
-               src={selectedImage}
-              alt="Selected Profile"  
-              maxW="500px"  
-              maxH="500px"  
-              objectFit="contain" 
-              w="100%" 
-              h="auto" 
-              borderRadius="md"  />
-            )}
-            <Text mt={4}>This is the modal content!</Text>
+          <ModalBody bg={"#1a202c"} p={10}>
+            <Flex
+              gap={4}
+              w={{ base: "90%", sm: "70%", md: "full" }}
+              mx={"auto"}
+            >
+              <Box
+                borderRadius={4}
+                borderColor={"whiteAlpha.300"}
+                border={"1px solid "}
+                flex={1.5}
+              >
+                {selectedImage && (
+                  <Image
+                    src={selectedImage}
+                    alt="Selected Profile"
+              width="100%"
+                    height="100%"
+                    objectFit="cover"
+                  />
+                  
+                 
+                   
+                )}
+              </Box>
+              <Flex
+                flex={1}
+                w={"full"}
+                flexDir={"column"}
+                px={5}
+                display={{ base: "none", md: "flex" }}
+              >
+                <Flex alignItems={"center"} justifyContent={"space-between"}>
+                  <Avatar
+                    src="https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/profilepic_sbwsbl.jpg"
+                    alt="profile-img"
+                    size={"sm"}
+                    name="_determinant"
+                  />
+
+                  <Text fontWeight={"bold"} fontSize={12}>
+                    _determinant
+                  </Text>
+                  <Box _hover={{bg: 'whiteAlpha.300', color: 'red.600'}} borderRadius={4} p={1}>
+                  <MdDelete  size={20} cursor='pointer'/>
+                </Box>
+                </Flex>
+               
+              </Flex>
+            </Flex>
           </ModalBody>
         </ModalContent>
       </Modal>
