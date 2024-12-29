@@ -4,7 +4,6 @@ import {
   VStack,
   Box,
   Flex,
-
   Text,
   Image,
   Avatar,
@@ -120,7 +119,6 @@ const ProfilePost = () => {
         </Grid>
       )}
 
-      {/* Modal */}
       <Modal
         isOpen={isOpen}
         onClose={onClose}
@@ -132,8 +130,7 @@ const ProfilePost = () => {
       >
         <ModalOverlay />
         <ModalContent>
-          {/* <ModalHeader>Image Details</ModalHeader> */}
-          <ModalCloseButton />
+          {/* <ModalCloseButton /> */}
           <ModalBody bg={"#1a202c"} p={10}>
             <Flex
               gap={4}
@@ -150,13 +147,10 @@ const ProfilePost = () => {
                   <Image
                     src={selectedImage}
                     alt="Selected Profile"
-              width="100%"
+                    width="100%"
                     height="100%"
                     objectFit="cover"
                   />
-                  
-                 
-                   
                 )}
               </Box>
               <Flex
@@ -173,15 +167,17 @@ const ProfilePost = () => {
                     size={"sm"}
                     name="_determinant"
                   />
-
                   <Text fontWeight={"bold"} fontSize={12}>
                     _determinant
                   </Text>
-                  <Box _hover={{bg: 'whiteAlpha.300', color: 'red.600'}} borderRadius={4} p={1}>
-                  <MdDelete  size={20} cursor='pointer'/>
-                </Box>
+                  <Box
+                    _hover={{ bg: "whiteAlpha.300", color: "red.600" }}
+                    borderRadius={4}
+                    p={1}
+                  >
+                    <MdDelete size={20} cursor="pointer" />
+                  </Box>
                 </Flex>
-               
               </Flex>
             </Flex>
           </ModalBody>
