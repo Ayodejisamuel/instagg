@@ -416,11 +416,53 @@ const ProfilePost = () => {
                     profilepic="https://res.cloudinary.com/dfkiftgfj/image/upload/v1733921481/samples/upscale-face-1.jpg"
                     text="Nice picture"
                   />
+                        <Comment
+                    createdAt="1d ago"
+                    username="_determinant"
+                    profilepic=" https://res.cloudinary.com/dfkiftgfj/image/upload/v1733921481/samples/upscale-face-1.jpg"
+                    text="good outfit"
+                  />
+                        <Comment
+                    createdAt="1d ago"
+                    username="_determinant"
+                    profilepic="https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/img2_jtbspt.jpg"
+                    text="good outfit"
+                  />
+                   <Comment
+                    createdAt="1d ago"
+                    username="_determinant"
+                    profilepic="https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/img2_jtbspt.jpg"
+                    text="good outfit"
+                  />
+                   <Comment
+                    createdAt="1d ago"
+                    username="_determinant"
+                    profilepic="https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/img2_jtbspt.jpg"
+                    text="good outfit"
+                  />
+                   <Comment
+                    createdAt="1d ago"
+                    username="_determinant"
+                    profilepic="https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/img2_jtbspt.jpg"
+                    text="good outfit"
+                  /> <Comment
+                  createdAt="1d ago"
+                  username="_determinant"
+                  profilepic="https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/img2_jtbspt.jpg"
+                  text="good outfit"
+                />
+                 <Comment
+                    createdAt="1d ago"
+                    username="_determinant"
+                    profilepic="https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/img2_jtbspt.jpg"
+                    text="good outfit"
+                  />
+                 
 
                   <Comment
                     createdAt="1d ago"
                     username="_determinant"
-                    profilepic="https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/img2_jtbspt.jpg"
+                    profilepic="https://res.cloudinary.com/dfkiftgfj/image/upload/v1733921480/samples/man-portrait.jpg"
                     text="good outfit"
                   />
                 </VStack>
