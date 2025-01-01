@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Box, VStack, Image, Button, Input } from "@chakra-ui/react";
+import { Box, VStack, Image, Button, Input, } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import GoogleAuth from "./GoogleAuth";
 import { toast } from "react-toastify";
 
 const Login = () => {
@@ -54,6 +55,7 @@ const Login = () => {
           type="password"
           fontSize={14}
         />
+        <GoogleAuth />
         <Button
           onClick={handleLogin}
           width={"full"}

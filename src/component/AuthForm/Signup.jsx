@@ -1,19 +1,40 @@
 import React, { useState } from "react";
-import { Box, VStack, Image, Button, Input } from "@chakra-ui/react";
+import {
+  Box,
+  VStack,
+  Image,
+  Button,
+  Input,
+  InputGroup,
+  InputRightElement,
+} from "@chakra-ui/react";
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import { auth } from "../../firebase/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import useEmailSignup from "../../hooks/useEmailSignup";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  // const { signup, loading, error } = useEmailSignup();
   const [input, setInput] = useState({
+    fullName: "",
+    userName: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
+  const { signup, loading, error } = useEmailSignup();
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   const toastOptions = {
     position: "bottom-right",
-    autoClose: "8000ms",
+    autoClose: 8000,
     pauseOnHover: true,
     draggable: true,
     theme: "dark",
@@ -22,26 +43,49 @@ const Signup = () => {
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
-
   const handleSignup = () => {
-    if (!input.email || !input.password || !input.confirmPassword) {
-      toast.error("All fields are required", toastOptions);
-      return;
-    }
     if (input.password !== input.confirmPassword) {
       toast.error("Passwords do not match", toastOptions);
       return;
     }
-    navigate("/");
-  };
+    signup(input).then(() => {
+      navigate("/");
+    });
+  }
+  
+// const handleSignup = async () => {
+//   const { email, fullName, userName, password, confirmPassword } = input;
 
+//   if (!email || !fullName || !userName || !password || !confirmPassword) {
+//     toast.error("All fields are required", toastOptions);
+//     return;
+//   }
+
+//   if (password !== confirmPassword) {
+//     toast.error("Passwords do not match", toastOptions);
+//     return;
+//   }
+
+//   try {
+//     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+//     const user = userCredential.user;
+
+//     // You can add the additional details (e.g., fullName, userName) to your database
+//     toast.success("Signup Successful!", toastOptions);
+//     navigate("/");
+//   } catch (error) {
+//     toast.error(`Signup failed: ${error.message}`, toastOptions);
+//   }
+// };
   return (
-    <Box border={"1px solid gray"} borderRadius={4} padding={5}>
+    <Box border="1px solid gray" borderRadius={4} padding={5}>
+      <ToastContainer />
       <VStack spacing={4}>
         <Image
           src="https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358629/logo_duz9yo.png"
           h={24}
-          alt="instagram"
+          alt="Logo"
+          fallback={<Box>Logo</Box>}
         />
         <Input
           onChange={handleChange}
@@ -53,30 +97,53 @@ const Signup = () => {
         />
         <Input
           onChange={handleChange}
-          name="password"
-          value={input.password}
-          placeholder="Enter password"
-          type="password"
+          name="fullName"
+          value={input.fullName}
+          placeholder="Enter full name"
+          type="text"
           fontSize={14}
         />
         <Input
           onChange={handleChange}
-          name="confirmPassword"
-          value={input.confirmPassword}
-          placeholder="Confirm password"
-          type="password"
+          name="userName"
+          value={input.userName}
+          placeholder="Enter username"
+          type="text"
           fontSize={14}
         />
-        <Button
-          onClick={handleSignup}
-          width={"full"}
-          fontSize={14}
-          size={"sm"}
-          colorScheme="blue"
-        >
-          Sign up
+        <InputGroup>
+          <Input
+            onChange={handleChange}
+            name="password"
+            value={input.password}
+            placeholder="Enter password"
+            type={showPassword ? "text" : "password"}
+            fontSize={14}
+          />
+          <InputRightElement h="full">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handleShowPassword}
+            >
+              {showPassword ? <ViewOffIcon /> : <ViewIcon />}
+            </Button>
+          </InputRightElement>
+        </InputGroup>
+        <Input
+            onChange={handleChange}
+            name="confirmPassword"
+            value={input.confirmPassword}
+            placeholder="Confirm Password"
+            type={showPassword ? "text" : "password"}
+            fontSize={14}
+          />
+         <Button onClick={handleSignup} fontSize={'sm'} w={'full'} isLoading={loading} colorScheme="blue">
+          Sign Up
         </Button>
+        {error && <p>Error: {error.message}</p>}
       </VStack>
+      <ToastContainer />
     </Box>
   );
 };
