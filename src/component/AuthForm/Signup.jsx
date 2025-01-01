@@ -37,8 +37,15 @@ const Signup = () => {
     autoClose: 8000,
     pauseOnHover: true,
     draggable: true,
-    theme: "dark",
+    theme: "dark", // Or any of the predefined themes
+    style: {
+      backgroundColor: "#2b3548", // Custom background color (e.g., green)
+      color: "#fff",              // Text color
+      fontSize: "16px",           // Custom font size
+      borderRadius: "10px",       // Custom border radius
+    },
   };
+  
 
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });

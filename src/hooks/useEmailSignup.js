@@ -4,6 +4,7 @@ import { firestore } from '../firebase/firebase';
 import { serverTimestamp } from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore"; 
 import { toast } from "react-toastify";
+import { ToastOptionProvider } from '@chakra-ui/react';
 
 const useEmailSignup = () => {
   const [
@@ -17,7 +18,7 @@ const useEmailSignup = () => {
     try {
       // Validate input fields before making API calls
       if (!input.email || !input.password || !input.fullName || !input.userName) {
-        toast.error("All fields are required", { position: "top-right" });
+        toast.error("All fields are required", toastOptions);
         return;
       }
 
@@ -25,7 +26,7 @@ const useEmailSignup = () => {
 
       if (!newUser) {
         if (error) {
-          toast.error(`Signup Error: ${error.message}`, { position: "top-right" });
+          toast.error(`Signup Error: ${error.message}`,toastOptions);
         }
         return;
       }
@@ -51,13 +52,12 @@ const useEmailSignup = () => {
       localStorage.setItem("user-info", JSON.stringify({ uid: newUser.user.uid, email: input.email }));
 
       // Notify the user of successful signup
-      toast.success("Signup successful! Redirecting...", { position: "top-right" });
+      toast.success("Signup successful! Redirecting...", toastOptions);
     } catch (err) {
       console.error(err);
-      toast.error(`Signup failed: ${err.message}`, { position: "top-right" });
+      toast.error(`Signup failed: ${err.message}`, toastOptions);
     }
   };
-
   return {
     loading,
     error,
