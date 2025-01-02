@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import { InstagramLogo, InstagramMobileLogo, CreatePostLogo, SearchLogo, NotificationsLogo } from "../../assets/constants";
 import { AiFillHome } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
+import useSignOut from "../../hooks/useSignOut";
 
 const Sidebar = () => {
+  const {handleLogout, loading, error} = useSignOut();
   const sidebarItems = [
 
     {
@@ -105,30 +107,33 @@ const Sidebar = () => {
           ))}
         </Flex>
         <Tooltip
-            
-              label={'logout'}
-              placement="right"
-              openDelay={500}
-              hasArrow
-              display={{base:'block', md:'none'}}
-            >
-              <Box
-                as={Link}
-                mt={'auto'}
-                to={'/auth'}
-                display="flex"
-                justifyContent={{base:'center', md:'left'}}
-                alignItems="center"
-                gap={4}
-                _hover={{ bg: "whiteAlpha.400" }}
-                borderRadius={6}
-                p={2}
-              >
-               <BiLogOut size={25 } />
-               <Box display={{base:'none', md:'block'}}>Logout</Box>
-             
-              </Box>
-            </Tooltip>
+  label="Logout"
+  placement="right"
+  openDelay={500}
+  hasArrow
+  display={{ base: "block", md: "none" }}
+>
+  <Box
+    as="button"
+    onClick={async () => {
+      const success = await handleLogout();
+      if (success) {
+        // Navigate to auth page or perform other actions
+        window.location.href = "/instagg/auth";
+      }
+    }}
+    display="flex"
+    justifyContent={{ base: "center", md: "left" }}
+    alignItems="center"
+    gap={4}
+    _hover={{ bg: "whiteAlpha.400" }}
+    borderRadius={6}
+    p={2}
+  >
+    <BiLogOut size={25} />
+    <Box display={{ base: "none", md: "block" }}>Logout</Box>
+  </Box>
+</Tooltip>
       </Flex>
     </Box>
   );

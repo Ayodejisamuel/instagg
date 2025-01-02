@@ -10,10 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { ToastContainer } from "react-toastify";
-import { auth } from "../../firebase/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { toast, ToastContainer } from "react-toastify";
 import useEmailSignup from "../../hooks/useEmailSignup";
 
 const Signup = () => {
