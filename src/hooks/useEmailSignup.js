@@ -4,6 +4,7 @@ import { firestore } from '../firebase/firebase';
 import { serverTimestamp } from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore"; 
 import { toast } from "react-toastify";
+import useAuthStore from '../store/authStore';
 import { ToastOptionProvider } from '@chakra-ui/react';
 
 const useEmailSignup = () => {
@@ -13,7 +14,8 @@ const useEmailSignup = () => {
     loading,
     error,
   ] = useCreateUserWithEmailAndPassword(auth);
-
+const loginUser = useAuthStore(state => state.login)
+const logoutUser = useAuthStore(state => state.logout)
   const signup = async (input) => {
     try {
       // Validate input fields before making API calls
@@ -30,7 +32,6 @@ const useEmailSignup = () => {
         }
         return;
       }
-
       // Prepare user data for Firestore
       const userDoc = {
         uid: newUser.user.uid,
@@ -50,7 +51,7 @@ const useEmailSignup = () => {
 
       // Save minimal data to local storage (avoid sensitive information)
       localStorage.setItem("user-info", JSON.stringify({ uid: newUser.user.uid, email: input.email }));
-
+      logoutUser(userDoc)
       // Notify the user of successful signup
       toast.success("Signup successful! Redirecting...", toastOptions);
     } catch (err) {

@@ -13,10 +13,10 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import useEmailSignup from "../../hooks/useEmailSignup";
 
+
 const Signup = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  // const { signup, loading, error } = useEmailSignup();
   const [input, setInput] = useState({
     fullName: "",
     userName: "",
@@ -34,12 +34,12 @@ const Signup = () => {
     autoClose: 8000,
     pauseOnHover: true,
     draggable: true,
-    theme: "dark", // Or any of the predefined themes
+    theme: "dark", 
     style: {
-      backgroundColor: "#2b3548", // Custom background color (e.g., green)
-      color: "#fff",              // Text color
-      fontSize: "16px",           // Custom font size
-      borderRadius: "10px",       // Custom border radius
+      backgroundColor: "#2b3548",  
+      color: "#fff",             
+      fontSize: "16px",          
+      borderRadius: "10px",     
     },
   };
   

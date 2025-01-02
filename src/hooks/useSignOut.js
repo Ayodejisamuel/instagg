@@ -19,6 +19,7 @@ import { toast, ToastContainer } from "react-toastify";
       await auth.signOut();
       localStorage.removeItem("user-info");
       toast.success("Logged out successfully", toastOptions);
+      alert('Logged out successfully')
       return true;
     } catch (error) {
       toast.error("Error logging out", toastOptions);

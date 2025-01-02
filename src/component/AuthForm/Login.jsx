@@ -13,10 +13,16 @@ const Login = () => {
 
   const toastOptions = {
     position: "bottom-right",
-    autoClose: "8000ms",
+    autoClose: 8000,
     pauseOnHover: true,
     draggable: true,
-    theme: "dark",
+    theme: "dark",  
+    style: {
+      backgroundColor: "#2b3548",  
+      color: "#fff",             
+      fontSize: "16px",            
+      borderRadius: "10px",        
+    },
   };
 
   const handleChange = (e) => {

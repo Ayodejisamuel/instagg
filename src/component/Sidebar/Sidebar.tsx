@@ -7,7 +7,7 @@ import { BiLogOut } from "react-icons/bi";
 import useSignOut from "../../hooks/useSignOut";
 
 const Sidebar = () => {
-  const {handleLogout, loading, error} = useSignOut();
+  const {handleLogout} = useSignOut();
   const sidebarItems = [
 
     {
