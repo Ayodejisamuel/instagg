@@ -13,7 +13,6 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import useEmailSignup from "../../hooks/useEmailSignup";
 
-
 const Signup = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -34,53 +33,71 @@ const Signup = () => {
     autoClose: 8000,
     pauseOnHover: true,
     draggable: true,
-    theme: "dark", 
+    theme: "dark",
     style: {
-      backgroundColor: "#2b3548",  
-      color: "#fff",             
-      fontSize: "16px",          
-      borderRadius: "10px",     
+      backgroundColor: "#2b3548",
+      color: "#fff",
+      fontSize: "16px",
+      borderRadius: "10px",
     },
   };
-  
 
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
-  const handleSignup = () => {
-    if (input.password !== input.confirmPassword) {
+  const handleSignup = async () => {
+    const { fullName, userName, email, password, confirmPassword } = input;
+
+    // Validation checks
+    if (!fullName || !userName || !email || !password || !confirmPassword) {
+      toast.error("All fields are required", toastOptions);
+      return;
+    }
+
+    if (password !== confirmPassword) {
       toast.error("Passwords do not match", toastOptions);
       return;
     }
-    signup(input).then(() => {
+
+    try {
+      // Call the signup method from the custom hook
+      await signup(input);
+
+      // Navigate to the homepage on successful signup
       navigate("/");
-    });
-  }
-  
-// const handleSignup = async () => {
-//   const { email, fullName, userName, password, confirmPassword } = input;
+    } catch (err) {
+      console.error("Signup failed:", err);
+      toast.error(
+        "An error occurred during signup. Please try again.",
+        toastOptions
+      );
+    }
+  };
 
-//   if (!email || !fullName || !userName || !password || !confirmPassword) {
-//     toast.error("All fields are required", toastOptions);
-//     return;
-//   }
+  // const handleSignup = async () => {
+  //   const { email, fullName, userName, password, confirmPassword } = input;
 
-//   if (password !== confirmPassword) {
-//     toast.error("Passwords do not match", toastOptions);
-//     return;
-//   }
+  //   if (!email || !fullName || !userName || !password || !confirmPassword) {
+  //     toast.error("All fields are required", toastOptions);
+  //     return;
+  //   }
 
-//   try {
-//     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-//     const user = userCredential.user;
+  //   if (password !== confirmPassword) {
+  //     toast.error("Passwords do not match", toastOptions);
+  //     return;
+  //   }
 
-//     // You can add the additional details (e.g., fullName, userName) to your database
-//     toast.success("Signup Successful!", toastOptions);
-//     navigate("/");
-//   } catch (error) {
-//     toast.error(`Signup failed: ${error.message}`, toastOptions);
-//   }
-// };
+  //   try {
+  //     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+  //     const user = userCredential.user;
+
+  //     // You can add the additional details (e.g., fullName, userName) to your database
+  //     toast.success("Signup Successful!", toastOptions);
+  //     navigate("/");
+  //   } catch (error) {
+  //     toast.error(`Signup failed: ${error.message}`, toastOptions);
+  //   }
+  // };
   return (
     <Box border="1px solid gray" borderRadius={4} padding={5}>
       <ToastContainer />
@@ -93,25 +110,26 @@ const Signup = () => {
         />
         <Input
           onChange={handleChange}
+          name="userName"
+          value={input.userName}
+          placeholder="Enter username"
+          type="text"
+          fontSize={14}
+        />
+        <Input
+          onChange={handleChange}
           name="email"
           value={input.email}
           placeholder="Enter email"
           type="email"
           fontSize={14}
         />
+
         <Input
           onChange={handleChange}
           name="fullName"
           value={input.fullName}
           placeholder="Enter full name"
-          type="text"
-          fontSize={14}
-        />
-        <Input
-          onChange={handleChange}
-          name="userName"
-          value={input.userName}
-          placeholder="Enter username"
           type="text"
           fontSize={14}
         />
@@ -125,24 +143,26 @@ const Signup = () => {
             fontSize={14}
           />
           <InputRightElement h="full">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleShowPassword}
-            >
+            <Button variant="ghost" size="sm" onClick={handleShowPassword}>
               {showPassword ? <ViewOffIcon /> : <ViewIcon />}
             </Button>
           </InputRightElement>
         </InputGroup>
         <Input
-            onChange={handleChange}
-            name="confirmPassword"
-            value={input.confirmPassword}
-            placeholder="Confirm Password"
-            type={showPassword ? "text" : "password"}
-            fontSize={14}
-          />
-         <Button onClick={handleSignup} fontSize={'sm'} w={'full'} isLoading={loading} colorScheme="blue">
+          onChange={handleChange}
+          name="confirmPassword"
+          value={input.confirmPassword}
+          placeholder="Confirm Password"
+          type={showPassword ? "text" : "password"}
+          fontSize={14}
+        />
+        <Button
+          onClick={handleSignup}
+          fontSize={"sm"}
+          w={"full"}
+          isLoading={loading}
+          colorScheme="blue"
+        >
           Sign Up
         </Button>
         {error && <p>Error: {error.message}</p>}

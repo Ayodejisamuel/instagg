@@ -1,12 +1,15 @@
 import React from "react";
 import { Box, Flex, Avatar, Text, Tooltip } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { InstagramLogo, InstagramMobileLogo, CreatePostLogo, SearchLogo, NotificationsLogo } from "../../assets/constants";
 import { AiFillHome } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
 import useSignOut from "../../hooks/useSignOut";
+import { Navigate } from "react-router-dom";
 
 const Sidebar = () => {
+
+  const navigate = useNavigate()
   const {handleLogout} = useSignOut();
   const sidebarItems = [
 
@@ -118,8 +121,7 @@ const Sidebar = () => {
     onClick={async () => {
       const success = await handleLogout();
       if (success) {
-        // Navigate to auth page or perform other actions
-        window.location.href = "/instagg/auth";
+ navigate('/auth');
       }
     }}
     display="flex"

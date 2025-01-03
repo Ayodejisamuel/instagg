@@ -20,10 +20,10 @@ const AuthPage = () => {
               <VStack>
                 <AuthForm />
                 {/* <Box>Get the App</Box> */}
-                <Flex justifyContent={"center"} alignContent={"center"} gap={5}>
+                {/* <Flex justifyContent={"center"} alignContent={"center"} gap={5}>
                   <Image src="https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/microsoft_ymiktq.png" h={"10"} alt={"playstore logo"} />
                   <Image src="https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/playstore_t23smt.png" h={"10"} alt={"playstore logo"} />
-                </Flex>
+                </Flex> */}
               </VStack>
             </Flex>
           </Container>
