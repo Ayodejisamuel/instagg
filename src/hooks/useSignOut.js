@@ -1,6 +1,9 @@
 import { auth } from "../firebase/firebase";
 import { toast, ToastContainer } from "react-toastify";
+import useAuthStore from "../store/authStore";
  const useSignOut = () => {
+
+  const logoutUser = useAuthStore(state => state.logout)
     const toastOptions = {
         position: "bottom-right",
         autoClose: 8000,
@@ -18,6 +21,7 @@ import { toast, ToastContainer } from "react-toastify";
     try {
       await auth.signOut();
       localStorage.removeItem("user-info");
+      logoutUser()
       toast.success("Logged out successfully", toastOptions);
  
       return true;
