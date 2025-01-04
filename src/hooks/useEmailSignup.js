@@ -3,7 +3,7 @@ import { auth } from '../firebase/firebase';
 import { firestore } from '../firebase/firebase';
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { toast } from "react-toastify";
-
+// import useAuthStore from '../store/authStore';
 
 const useEmailSignup = () => {
   const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
@@ -22,7 +22,8 @@ const useEmailSignup = () => {
       borderRadius: "10px",
     },
   };
-
+  
+// const loginUser = useAuthStore(state => state.login)
   const signup = async (input) => {
     try {
       // Validate input fields
@@ -30,7 +31,6 @@ const useEmailSignup = () => {
         toast.error("All fields are required", toastOptions);
         return;
       }
-
       // Create user with email and password
       const newUser = await createUserWithEmailAndPassword(input.email, input.password);
 
@@ -42,27 +42,32 @@ const useEmailSignup = () => {
       }
 
       // Prepare user data for Firestore
-      const userDoc = {
-        uid: newUser.user.uid,
-        email: input.email,
-        fullName: input.fullName,
-        userName: input.userName,
-        bio: '',
-        profilePicURL: '',
-        followers: [],
-        following: [],
-        posts: [],
-        createdAt: serverTimestamp(),
-      };
+      
+      if(newUser) {
+        const userDoc = {
+          uid: newUser.user.uid,
+          email: input.email,
+          fullName: input.fullName,
+          userName: input.userName,
+          bio: '',
+          profilePicURL: '',
+          followers: [],
+          following: [],
+          posts: [],
+          createdAt: serverTimestamp(),
+        };
+        
+        // Save user data to Firestore
 
-      // Save user data to Firestore
-      await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
+        await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
+        localStorage.setItem("user-info", JSON.stringify(userDoc));
+        // loginUser(userDoc);
 
-      // Save minimal data to local storage
-      localStorage.setItem("user-info", JSON.stringify({ uid: newUser.user.uid, email: input.email }));
-
-      // Notify the user of successful signup
-      toast.success("Signup successful! Redirecting...", toastOptions);
+        // Save minimal data to local storage
+        // Notify the user of successful signup
+        toast.success("Signup successful! Redirecting...", toastOptions);
+      }
+     
     } catch (err) {
       console.error("Firestore error:", err);
       toast.error(`Signup failed: ${err.message}`, toastOptions);

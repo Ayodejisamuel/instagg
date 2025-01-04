@@ -23,10 +23,8 @@ const Signup = () => {
     password: "",
     confirmPassword: "",
   });
+
   const { signup, loading, error } = useEmailSignup();
-  const handleShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
 
   const toastOptions = {
     position: "bottom-right",
@@ -45,10 +43,10 @@ const Signup = () => {
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
+
   const handleSignup = async () => {
     const { fullName, userName, email, password, confirmPassword } = input;
 
-    // Validation checks
     if (!fullName || !userName || !email || !password || !confirmPassword) {
       toast.error("All fields are required", toastOptions);
       return;
@@ -60,44 +58,14 @@ const Signup = () => {
     }
 
     try {
-      // Call the signup method from the custom hook
       await signup(input);
-
-      // Navigate to the homepage on successful signup
+      toast.success("Signup successful!", toastOptions);
       navigate("/");
     } catch (err) {
-      console.error("Signup failed:", err);
-      toast.error(
-        "An error occurred during signup. Please try again.",
-        toastOptions
-      );
+      toast.error("An error occurred during signup. Please try again.", toastOptions);
     }
   };
 
-  // const handleSignup = async () => {
-  //   const { email, fullName, userName, password, confirmPassword } = input;
-
-  //   if (!email || !fullName || !userName || !password || !confirmPassword) {
-  //     toast.error("All fields are required", toastOptions);
-  //     return;
-  //   }
-
-  //   if (password !== confirmPassword) {
-  //     toast.error("Passwords do not match", toastOptions);
-  //     return;
-  //   }
-
-  //   try {
-  //     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-  //     const user = userCredential.user;
-
-  //     // You can add the additional details (e.g., fullName, userName) to your database
-  //     toast.success("Signup Successful!", toastOptions);
-  //     navigate("/");
-  //   } catch (error) {
-  //     toast.error(`Signup failed: ${error.message}`, toastOptions);
-  //   }
-  // };
   return (
     <Box border="1px solid gray" borderRadius={4} padding={5}>
       <ToastContainer />
@@ -124,7 +92,6 @@ const Signup = () => {
           type="email"
           fontSize={14}
         />
-
         <Input
           onChange={handleChange}
           name="fullName"
@@ -143,7 +110,7 @@ const Signup = () => {
             fontSize={14}
           />
           <InputRightElement h="full">
-            <Button variant="ghost" size="sm" onClick={handleShowPassword}>
+            <Button variant="ghost" size="sm" onClick={() => setShowPassword(!showPassword)}>
               {showPassword ? <ViewOffIcon /> : <ViewIcon />}
             </Button>
           </InputRightElement>
@@ -157,7 +124,7 @@ const Signup = () => {
           fontSize={14}
         />
         <Button
-          onClick={handleSignup}
+          onClick={ handleSignup}
           fontSize={"sm"}
           w={"full"}
           isLoading={loading}
@@ -165,9 +132,8 @@ const Signup = () => {
         >
           Sign Up
         </Button>
-        {error && <p>Error: {error.message}</p>}
+        {error &&   toast.error(` ${error.message}`, toastOptions)}
       </VStack>
-      <ToastContainer />
     </Box>
   );
 };
