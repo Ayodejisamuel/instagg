@@ -9,26 +9,35 @@ import HomePage from "./Pages/Homepage/HomePage";
 import AuthPage from "./Pages/AuthPage/AuthPage";
 import ProfilePage from "./Pages/ProfilePage/ProfilePage";
 import PageLayout from "./Layout/PageLayout/PageLayout";
+import useAuthStore from "./store/authStore";
 import "./App.css";
-// import useAuthStore from "./store/authStore";
 
 function App() {
-  // const authUser = useAuthStore((state) => state.user);
+  const authUser = useAuthStore((state) => state.user);
+
   return (
     <ChakraProvider>
       <Router basename="/instagg">
         <PageLayout>
           <Box>
             <Routes>
+              {/* Conditionally render the HomePage based on authentication */}
               <Route
                 path="/"
-                element={<HomePage />}
+                element={authUser ? <HomePage /> : <Navigate to="/auth" />}
               />
+              
+              {/* Public route for authentication */}
               <Route
                 path="/auth"
-                element={<AuthPage />}
+                element={authUser ? <Navigate to="/" /> : <AuthPage />}
               />
-              <Route path="/:userprofile" element={<ProfilePage />} />
+              
+              {/* Protected profile route */}
+              <Route
+                path="/:userprofile"
+                element={authUser ? <ProfilePage /> : <Navigate to="/auth" />}
+              />
             </Routes>
           </Box>
         </PageLayout>

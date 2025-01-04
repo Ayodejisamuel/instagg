@@ -3,7 +3,7 @@ import { auth } from '../firebase/firebase';
 import { firestore } from '../firebase/firebase';
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { toast } from "react-toastify";
-// import useAuthStore from '../store/authStore';
+import useAuthStore from '../store/authStore';
 
 const useEmailSignup = () => {
   const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
@@ -23,7 +23,7 @@ const useEmailSignup = () => {
     },
   };
   
-// const loginUser = useAuthStore(state => state.login)
+const loginUser = useAuthStore(state => state.login)
   const signup = async (input) => {
     try {
       // Validate input fields
@@ -34,7 +34,7 @@ const useEmailSignup = () => {
       // Create user with email and password
       const newUser = await createUserWithEmailAndPassword(input.email, input.password);
 
-      if (!newUser) {
+      if (!newUser?.user) {
         if (error) {
           toast.error(`Signup Error: ${error.message}`, toastOptions);
         }
@@ -61,7 +61,7 @@ const useEmailSignup = () => {
 
         await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
         localStorage.setItem("user-info", JSON.stringify(userDoc));
-        // loginUser(userDoc);
+        loginUser(userDoc);
 
         // Save minimal data to local storage
         // Notify the user of successful signup
