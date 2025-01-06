@@ -12,7 +12,7 @@ const PageLayout = ({ children }) => {
   const isProfilePage =  /^\/[^/]+$/.test(pathname);
 
 
- const canRenderSidebar = pathname !== '/auth' && !isProfilePage ;
+ const canRenderSidebar = pathname !== '/auth' && user ;
  const canRenderNavbar = isProfilePage && !user &&  !loading && pathname !== '/auth'
 
   return (

@@ -3,6 +3,7 @@ import { Box, VStack, Image, Button, Input, } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import GoogleAuth from "./GoogleAuth";
 import { toast } from "react-toastify";
+import useLogin from "../../hooks/useLogin";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-
+const {loading, error, Login} = useLogin()
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
@@ -63,7 +64,8 @@ const Login = () => {
         />
         <GoogleAuth />
         <Button
-          onClick={handleLogin}
+        isLoading={loading}
+          onClick={() => Login(input) }
           width={"full"}
           fontSize={14}
           size={"sm"}

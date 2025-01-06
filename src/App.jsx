@@ -11,9 +11,12 @@ import ProfilePage from "./Pages/ProfilePage/ProfilePage";
 import PageLayout from "./Layout/PageLayout/PageLayout";
 import useAuthStore from "./store/authStore";
 import "./App.css";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./firebase/firebase";
 
 function App() {
-  const authUser = useAuthStore((state) => state.user);
+  // const authUser = useAuthStore((state) => state.user);
+  const [authUser] = useAuthState(auth)
 
   return (
     <ChakraProvider>
