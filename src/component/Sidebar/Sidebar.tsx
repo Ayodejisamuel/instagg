@@ -34,7 +34,7 @@ const Sidebar = () => {
       link: "/create",
     },
     {
-      Icon: <Avatar size="sm" name="Aamuel" src="https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/profilepic_sbwsbl.jpg" />,
+      Icon: <Avatar size="sm" name="Determinant" src="https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/profilepic_sbwsbl.jpg" />,
       text: "Profile",
       link: "/determinant",
     },

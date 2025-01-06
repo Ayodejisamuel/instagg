@@ -124,7 +124,7 @@ const Signup = () => {
           fontSize={14}
         />
         <Button
-          onClick={ handleSignup}
+          onClick={() => signup(input)}
           fontSize={"sm"}
           w={"full"}
           isLoading={loading}

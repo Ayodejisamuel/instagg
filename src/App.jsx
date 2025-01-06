@@ -36,7 +36,7 @@ function App() {
               {/* Protected profile route */}
               <Route
                 path="/:userprofile"
-                element={authUser ? <ProfilePage /> : <Navigate to="/auth" />}
+                element={ <ProfilePage />}
               />
             </Routes>
           </Box>
