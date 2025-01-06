@@ -4,6 +4,8 @@ import { firestore } from '../firebase/firebase';
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { toast } from "react-toastify";
 import useAuthStore from '../store/authStore';
+import { collection,query, where, getDocs } from 'firebase/firestore';
+ 
 
 const useEmailSignup = () => {
   const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
@@ -22,15 +24,29 @@ const useEmailSignup = () => {
       borderRadius: "10px",
     },
   };
-  
+
 const loginUser = useAuthStore(state => state.login)
   const signup = async (input) => {
+  
     try {
       // Validate input fields
       if (!input.email || !input.password || !input.fullName || !input.userName) {
         toast.error("All fields are required", toastOptions);
         return;
       }
+         
+  // check if username is already exist
+  const usersRef = collection(firestore, "users");
+
+  // Create a query against the collection.
+  const q = query(usersRef, where("userName", "==", input.userName));
+  const querySnapshot = await getDocs(q)
+  
+      if(!querySnapshot.empty) {
+        toast.error("Username already exist", toastOptions);
+          return 
+      }
+
       // Create user with email and password
       const newUser = await createUserWithEmailAndPassword(input.email, input.password);
 
@@ -42,7 +58,6 @@ const loginUser = useAuthStore(state => state.login)
       }
 
       // Prepare user data for Firestore
-      
       if(newUser) {
         const userDoc = {
           uid: newUser.user.uid,
