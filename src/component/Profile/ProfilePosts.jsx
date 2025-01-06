@@ -260,14 +260,24 @@ const ProfilePost = () => {
 
   return (
     <>
+
       {isLoading ? (
-        [0, 1, 2, 3, 4].map((_, index) => (
-          <VStack key={index} w="100%">
+       
+          <Grid
+          templateColumns={{
+            base: "repeat(1, 1fr)",
+            md: "repeat(2, 1fr)",
+            lg: "repeat(3, 1fr)",
+          }}
+          gap={4}
+        >
+          {imageUrls.map((_, index) => (
             <Skeleton height="300px" width="100%" borderRadius="md">
               <Box h="300px" />
             </Skeleton>
-          </VStack>
-        ))
+     
+        ))}
+        </Grid>
       ) : (
         <Grid
           templateColumns={{
