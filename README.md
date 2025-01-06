@@ -1,17 +1,26 @@
  # Instagg - React Firebase App
-nstagg is a social media platform that allows users to sign up, sign in, and interact with posts, all powered by Firebase for authentication, Firestore for data storage, and Firebase Storage for media handling.
+Instagg is a social media platform that allows users to sign up, sign in, and interact with posts, all powered by Firebase for authentication, Firestore for data storage, and Firebase Storage for media handling.
 
 Features
 User Authentication: Users can sign up, log in, and authenticate using Firebase Authentication.
+
+
 Firestore Database: User data and other app-related information are stored in Firestore.
+
+
 Media Uploads: Users can upload images and other media files to Firebase Storage.
 Real-Time Data: Changes to user data and posts are reflected in real-time using Firestore.
-Technologies Used
+
+#Technologies Used
+
+
 React: Frontend library for building the user interface.
 Firebase: Backend-as-a-service for authentication, database (Firestore), and storage (Firebase Storage).
 CSS: Styling and layout of the user interface.
 Firebase SDK: Used to interact with Firebase services (Authentication, Firestore, and Firebase Storage).
-Getting Started
+
+
+#Getting Started
 Prerequisites
 Make sure you have Node.js installed on your machine.
 You'll also need to have a Firebase account and create a Firebase project.

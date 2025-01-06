@@ -43,10 +43,9 @@ const loginUser = useAuthStore(state => state.login)
   const querySnapshot = await getDocs(q)
   
       if(!querySnapshot.empty) {
-        toast.error("Username already exist", toastOptions);
+        toast.error("Username already exist choose another", toastOptions);
           return 
       }
-
       // Create user with email and password
       const newUser = await createUserWithEmailAndPassword(input.email, input.password);
 
@@ -56,8 +55,7 @@ const loginUser = useAuthStore(state => state.login)
         }
         return;
       }
-
-      // Prepare user data for Firestore
+        // Prepare user data for Firestore
       if(newUser) {
         const userDoc = {
           uid: newUser.user.uid,
