@@ -1,17 +1,14 @@
-import { Box, Text, Flex, Image } from "@chakra-ui/react";
+import {Divider,AbsoluteCenter, Box, Text, Flex, Image, Button} from "@chakra-ui/react";
 
 const GoogleAuth = () => {
 
     return(<>
-    <Box w={'full'}>
-           <Flex alignItems="center" my={4}>
-                    <Box flex={2} h="1px" bg="gray.400" />
-                    <Text mx={2} fontSize={14} fontWeight="bold">
-                      OR
-                    </Text>
-                    <Box flex={2} h="1px" bg="gray.400" />
-                  </Flex>
-          
+
+    <Button w={'full'}    fontSize={14}
+          size={"sm"}
+          _hover={{backgroundColor: 'rgb(0, 149, 246)'}}
+          backgroundColor={'rgb(0, 149, 246)'}>
+           
                   <Flex
                     alignItems="center"
                     cursor="pointer"
@@ -25,10 +22,21 @@ const GoogleAuth = () => {
                       alt="Google Icon"
                       width={5}
                     />
-                    <Text color="blue.500">Log in with Google</Text>
+                    <Text >Log in with Facebook</Text>
+                    <Box></Box>
+ 
+
                   </Flex>
           
-        </Box></>)
+        </Button>
+        <Flex  alignItems={'center'} >
+  <Divider  h={'3rem'}/>
+  <Text>
+    OR
+  </Text>
+  <Divider  h={'3rem'}/>
+</Flex>
+        </>)
 }
 
 export default GoogleAuth;

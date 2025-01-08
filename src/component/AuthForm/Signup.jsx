@@ -69,22 +69,14 @@ const Signup = () => {
   return (
     <Box border="1px solid gray" borderRadius={4} padding={5}>
       <ToastContainer />
-      <VStack spacing={4}>
+      <VStack spacing={1}>
         <Image
           src="https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358629/logo_duz9yo.png"
           h={24}
           alt="Logo"
           fallback={<Box>Logo</Box>}
         />
-        <Input
-          onChange={handleChange}
-          name="userName"
-          value={input.userName}
-          placeholder="Enter username"
-          type="text"
-          fontSize={14}
-        />
-        <Input
+         <Input
           onChange={handleChange}
           name="email"
           value={input.email}
@@ -92,16 +84,8 @@ const Signup = () => {
           type="email"
           fontSize={14}
         />
-        <Input
-          onChange={handleChange}
-          name="fullName"
-          value={input.fullName}
-          placeholder="Enter full name"
-          type="text"
-          fontSize={14}
-        />
-        <InputGroup>
-          <Input
+         <InputGroup>
+         <Input
             onChange={handleChange}
             name="password"
             value={input.password}
@@ -109,20 +93,40 @@ const Signup = () => {
             type={showPassword ? "text" : "password"}
             fontSize={14}
           />
-          <InputRightElement h="full">
-            <Button variant="ghost" size="sm" onClick={() => setShowPassword(!showPassword)}>
-              {showPassword ? <ViewOffIcon /> : <ViewIcon />}
-            </Button>
-          </InputRightElement>
-        </InputGroup>
+     <InputRightElement h="full">
+       <Button variant="ghost" size="sm" onClick={() => setShowPassword(!showPassword)}>
+         {showPassword ? <ViewOffIcon /> : <ViewIcon />}
+       </Button>
+     </InputRightElement>
+   </InputGroup>
+            
+            <Input
+          onChange={handleChange}
+          name="fullName"
+          value={input.fullName}
+          placeholder="Enter full name"
+          type="text"
+          fontSize={14}
+        />
         <Input
+          onChange={handleChange}
+          name="userName"
+          value={input.userName}
+          placeholder="username"
+          type="text"
+          fontSize={14}
+        />
+       
+      
+       
+        {/* <Input
           onChange={handleChange}
           name="confirmPassword"
           value={input.confirmPassword}
           placeholder="Confirm Password"
           type={showPassword ? "text" : "password"}
           fontSize={14}
-        />
+        /> */}
         <Button
           onClick={() => signup(input)}
           fontSize={"sm"}

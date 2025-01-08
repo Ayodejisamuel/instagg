@@ -1,7 +1,7 @@
  # Instagg - React Firebase App
 Instagg is a social media platform model after Instagram that allows users to sign up, sign in, and interact with posts, all powered by Firebase for authentication, Firestore for data storage, and Firebase Storage for media handling.
 
-Features
+#Features
 User Authentication: Users can sign up, log in, and authenticate using Firebase Authentication.
 
 
@@ -42,17 +42,7 @@ Create a Firebase project in the Firebase Console.
 Enable Authentication (Email/Password sign-up).
 Set up Firestore and Firebase Storage.
 Obtain your Firebase configuration keys from the Firebase Console and add them to your project.
-Configure Environment Variables: Create a .env file in the root of your project and add your Firebase configuration. Here’s an example format for the .env file:
 
-env
-Copy code
-REACT_APP_API_KEY=your-api-key
-REACT_APP_AUTH_DOMAIN=your-auth-domain
-REACT_APP_PROJECT_ID=your-project-id
-REACT_APP_STORAGE_BUCKET=your-storage-bucket
-REACT_APP_MESSAGING_SENDER_ID=your-messaging-sender-id
-REACT_APP_APP_ID=your-app-id
-REACT_APP_MEASUREMENT_ID=your-measurement-id
 Start the Application: Run the app locally with the following command:
 
 bash

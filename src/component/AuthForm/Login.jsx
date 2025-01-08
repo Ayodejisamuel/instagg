@@ -11,18 +11,20 @@ const Login = () => {
     email: "",
     password: "",
   });
-const {loading, error, Login} = useLogin()
+
+  const { loading, login } = useLogin();
+
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
     pauseOnHover: true,
     draggable: true,
-    theme: "dark",  
+    theme: "dark",
     style: {
-      backgroundColor: "#2b3548",  
-      color: "#fff",             
-      fontSize: "16px",            
-      borderRadius: "10px",        
+      backgroundColor: "#2b3548",
+      color: "#fff",
+      fontSize: "16px",
+      borderRadius: "10px",
     },
   };
 
@@ -40,12 +42,15 @@ const {loading, error, Login} = useLogin()
 
   return (
     <Box border={"1px solid gray"} borderRadius={4} padding={5}>
+
       <VStack spacing={4}>
         <Image
           src="https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358629/logo_duz9yo.png"
           h={24}
           alt="instagram"
         />
+              <GoogleAuth />
+
         <Input
           onChange={handleChange}
           name="email"
@@ -62,10 +67,10 @@ const {loading, error, Login} = useLogin()
           type="password"
           fontSize={14}
         />
-        <GoogleAuth />
+    
         <Button
-        isLoading={loading}
-          onClick={() => Login(input) }
+          isLoading={loading}
+          onClick={() => login(input)}
           width={"full"}
           fontSize={14}
           size={"sm"}
