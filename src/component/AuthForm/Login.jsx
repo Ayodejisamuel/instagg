@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, VStack, Image, Button, Input, } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import GoogleAuth from "./GoogleAuth";
+import GoogleAuth from "./FacebookAuth";
 import { toast } from "react-toastify";
 import useLogin from "../../hooks/useLogin";
 
