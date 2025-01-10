@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Flex, Text, Image } from "@chakra-ui/react";
+import { Box, Flex, } from "@chakra-ui/react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Signup from "./Signup";
@@ -22,31 +22,29 @@ const AuthForm = () => {
         color="white"
       >
         {isLoggedIn ? <Login /> : <Signup />}
-
-       
-        <Box
-          border="1px solid gray"
-          my={2}
-          borderRadius={4}
-          padding={5}
-          width="full"
+      </Box>
+      <Box
+        border="1px solid gray"
+        my={2}
+        borderRadius={4}
+        padding={5}
+        width="full"
+      >
+        <Flex
+          cursor="pointer"
+          gap={2}
+          alignItems="center"
+          justifyContent="center"
         >
-          <Flex
-            cursor="pointer"
-            gap={2}
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Box>
-              {isLoggedIn
-                ? "Don't have an account? "
-                : "Already have an account?"}
-            </Box>
-            <Box color="blue.500" onClick={() => setIsLoggedIn(!isLoggedIn)}>
-              {isLoggedIn ? "Sign up" : "Log in"}
-            </Box>
-          </Flex>
-        </Box>
+          <Box>
+            {isLoggedIn
+              ? "Don't have an account? "
+              : "Already have an account?"}
+          </Box>
+          <Box color="blue.500" onClick={() => setIsLoggedIn(!isLoggedIn)}>
+            {isLoggedIn ? "Sign up" : "Log in"}
+          </Box>
+        </Flex>
       </Box>
       <ToastContainer />
     </>

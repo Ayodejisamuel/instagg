@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import GoogleAuth from "./GoogleAuth";
 import {
   Box,
   VStack,
@@ -76,6 +77,7 @@ const Signup = () => {
           alt="Logo"
           fallback={<Box>Logo</Box>}
         />
+        <GoogleAuth />
          <Input
           onChange={handleChange}
           name="email"
