@@ -7,8 +7,10 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { span } from "framer-motion/client";
+ import useUserProfileStore from "../../store/userProfileStore";
 
 const ProfileHeader = (userProfile) => {
+ const {username } = useUserProfileStore()
   return (
     <Flex
       direction={{ base: "column", md: "row" }}
@@ -35,7 +37,7 @@ const ProfileHeader = (userProfile) => {
            gap={4}
         >
           <Text fontSize={{ base: "sm", md: "lg" }} color={"whiteAlpha"}>
-    {username}
+    {username.username}
           </Text>
           <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
             <Button
@@ -58,19 +60,19 @@ const ProfileHeader = (userProfile) => {
         >
           <Text>
             <Text as={span} fontWeight={"bold"} mr={1}>
-              34
+              {username.posts.length}
             </Text>
             Posts
           </Text>
           <Text>
             <Text as={span} fontWeight={"bold"} mr={2}>
-              455
+              {username.followers.length}
             </Text>{" "}
             Followers
           </Text>
           <Text>
             <Text as={span} fontWeight={"bold"} mr={2}>
-              56
+              {username.following}
             </Text>{" "}
             Following
           </Text>
@@ -80,7 +82,7 @@ const ProfileHeader = (userProfile) => {
           mx={{ base: "auto", md: "1" }}
         >
           <Text fontSize={"sm"} color={"gray.500"}>
-            {"@determinant_"}
+            {username.fullName}
           </Text>
           <Text fontSize={"sm"} color={"gray.500"}>
             {"2025"}
@@ -91,7 +93,7 @@ const ProfileHeader = (userProfile) => {
            mx={{ base: "auto", md: "1" }}
           fontSize={"sm"}
         >
-          I love Traveling
+          {username.bio || username}
         </Flex>
       </VStack>
     </Flex>

@@ -1,4 +1,3 @@
- // hooks/getUserProfile.js
 import { query, where, getDocs, collection } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { firestore } from "../firebase/firebase";
@@ -20,14 +19,14 @@ const useGetUserProfile = (username) => {
         );
         const querySnapshot = await getDocs(q);
 
-        if (querySnapshot.empty) return setUserProfile(null);
-         else {
+        if (querySnapshot.empty) {
+          setUserProfile({});
+        } else {
           let userDoc;
-
           querySnapshot.forEach((doc) => {
-          userDoc = doc.data();
+            userDoc = doc.data();
           });
-        setUserProfile(userDoc);
+          setUserProfile(userDoc);
         }
       } catch (err) {
         setError(err.message);
@@ -35,7 +34,8 @@ const useGetUserProfile = (username) => {
         setIsLoading(false);
       }
     };
-     getProfile();
+
+    if (username) getProfile();
   }, [username]);
 
   return { userProfile, isLoading, error };
