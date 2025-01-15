@@ -8,8 +8,8 @@ import { toast, ToastContainer } from "react-toastify";
 import { Link, useParams } from "react-router-dom";
 
 const ProfilePage = () => {
-  const { username } = useParams();
-  const { userProfile, isLoading, error } = useGetUserProfile(username);
+  const { username } = useParams();  
+  const { userProfile, isLoading, error } = useGetUserProfile(username); 
 
   useEffect(() => {
     if (error) {

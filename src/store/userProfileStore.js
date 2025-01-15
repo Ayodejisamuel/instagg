@@ -2,7 +2,7 @@
 
 const useUserProfileStore = create((set) => ({
   userProfile: null,
-  setUserProfile: (userProfile) => set({ userProfile: userProfile}),
+  setUserProfile: (userProfile) => set({ userProfile}),
 }));
 
 export default useUserProfileStore;
