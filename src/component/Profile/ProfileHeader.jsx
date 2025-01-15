@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { span } from "framer-motion/client";
 
-const ProfileHeader = () => {
+const ProfileHeader = (userProfile) => {
   return (
     <Flex
       direction={{ base: "column", md: "row" }}
@@ -35,7 +35,7 @@ const ProfileHeader = () => {
            gap={4}
         >
           <Text fontSize={{ base: "sm", md: "lg" }} color={"whiteAlpha"}>
-            determinant_
+    {username}
           </Text>
           <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
             <Button

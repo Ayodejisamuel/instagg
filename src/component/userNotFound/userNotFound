@@ -1,0 +1,12 @@
+const userNotFound = () => {
+  return (
+    <Flex flexDir={"column"} alignItems={"center"} mx={"auto"}>
+      <Text fontSize={"2xl"}>User Not Found</Text>
+      <Link  to={"/"} color={"blue.500"} w={"max-content"} mx={"auto"}>
+        Go Home
+      </Link>
+    </Flex>
+  );
+};
+
+export default userNotFound;

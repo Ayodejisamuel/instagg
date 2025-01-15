@@ -231,7 +231,7 @@ import { FaComment } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import Comment from "../comment/comment";
 import PostFooter from "../FeedPosts/PostFooter";
-const ProfilePost = () => {
+const ProfilePost = (userProfile) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isLoading, setIsLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);

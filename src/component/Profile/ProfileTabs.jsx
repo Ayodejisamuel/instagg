@@ -1,7 +1,7 @@
 import { Flex, Text, Box } from "@chakra-ui/react";
 import { BsGrid3X3 } from "react-icons/bs";
 
-const ProfileTabs = () => {
+const ProfileTabs = (userProfle) => {
   return (
     <Flex
       w={"full"}

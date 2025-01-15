@@ -7,7 +7,6 @@ import Login from "./Login";
 
 const AuthForm = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-
   return (
     <>
       <Box

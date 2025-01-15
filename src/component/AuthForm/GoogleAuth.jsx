@@ -1,6 +1,6 @@
 import { Button,Flex, Image, Text, Divider } from "@chakra-ui/react";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { doc, setDoc,  serverTimestamp } from "firebase/firestore";
 import { firestore } from "../../firebase/firebase";
 import useAuthStore from "../../store/authStore";
 import { toast } from "react-toastify";
@@ -35,7 +35,16 @@ const GoogleAuth = () => {
         return
       }
 
-    if(newUser) {
+      const userRef = doc(firestore, "users", newUser.user.uid);
+      const userSnap = await getDoc(userRef);
+      if(userSnap) {
+// login
+        const userDoc = userSnap.data()
+        localStorage.setItem("user-info", userDoc )
+        loginUser(userDoc)
+
+      } else 
+ {
             const userDoc = {
               uid: newUser.user.uid,
               email: newUser.user.email,
@@ -62,6 +71,7 @@ const GoogleAuth = () => {
   }
   return (
     <>
+
       <Button
         w="full"
         onClick={handleGoogleAuth}
@@ -92,6 +102,7 @@ const GoogleAuth = () => {
         <Text>OR</Text>
         <Divider h="3rem" />
       </Flex>
+
     </>
   );
 };

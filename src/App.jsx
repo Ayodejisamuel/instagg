@@ -38,7 +38,7 @@ function App() {
               
               {/* Protected profile route */}
               <Route
-                path="/:userprofile"
+                path="/:username"
                 element={ <ProfilePage />}
               />
             </Routes>

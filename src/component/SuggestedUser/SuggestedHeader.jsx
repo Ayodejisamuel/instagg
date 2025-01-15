@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const SuggestedHeader = () => {
   const { handleLogout } = useSignout();
   const authUser = useAuthStore((state) => state.user);
-
+  if(!authUser) return null
   return (
     <Flex
       justifyContent={"space-between"}
