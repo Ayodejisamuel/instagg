@@ -18,6 +18,7 @@ const useGetUserProfile = (userName) => {
           collection(firestore, "users"),
           where("username", "==", userName)
         );
+
         const querySnapshot = await getDocs(q);
 
         if (querySnapshot.empty) {
@@ -25,6 +26,7 @@ const useGetUserProfile = (userName) => {
         } else {
           let userDoc;
           querySnapshot.forEach((doc) => {
+            console.log(doc.data())
             userDoc = doc.data();
           });
           setUserProfile(userDoc);
@@ -37,8 +39,8 @@ const useGetUserProfile = (userName) => {
       }
     };
 
-    if (username) getProfile();
-  }, [username]);
+    if (userName) getProfile();
+  }, [userName]);
 
   return { userProfile, isLoading, error };
 };
