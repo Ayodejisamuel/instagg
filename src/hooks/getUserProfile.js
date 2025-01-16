@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { firestore } from "../firebase/firebase";
 import { toast } from "react-toastify";
 
-const useGetUserProfile = (userName) => {
+const useGetUserProfile = (username) => {
   const [userProfile, setUserProfile] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -16,18 +16,22 @@ const useGetUserProfile = (userName) => {
       try {
         const q = query(
           collection(firestore, "users"),
-          where("username", "==", userName)
+          where("username", "==", username)
         );
-
+console.log(username)
         const querySnapshot = await getDocs(q);
 
         if (querySnapshot.empty) {
-          setUserProfile({});
+          console.log(userProfile)
+          setUserProfile();
+        
         } else {
           let userDoc;
+       
           querySnapshot.forEach((doc) => {
             console.log(doc.data())
             userDoc = doc.data();
+  
           });
           setUserProfile(userDoc);
         }
@@ -39,8 +43,8 @@ const useGetUserProfile = (userName) => {
       }
     };
 
-    if (userName) getProfile();
-  }, [userName]);
+    if (username) getProfile();
+  }, [username]);
 
   return { userProfile, isLoading, error };
 };
