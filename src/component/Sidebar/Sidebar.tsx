@@ -20,7 +20,7 @@ const Sidebar = () => {
 
   // Ensure path defaults to a fallback if userName is not available
   const path = authUserr?.userName || "default"; 
-  console.log("authUserr:", authUserr); // Debugging output
+  // console.log("authUserr:", authUserr); // Debugging output
 
   const sidebarItems = [
     {
@@ -113,8 +113,7 @@ const Sidebar = () => {
                 justifyContent={{ base: "center", md: "left" }}
                 alignItems="center"
                 gap={4}
-                _hover={{ bg: "whiteAlpha.400" }}
-                borderRadius={6}
+                _hover={{ bg: "whiteAlpha.400" }}                borderRadius={6}
                 p={2}
               >
                 {item.Icon}

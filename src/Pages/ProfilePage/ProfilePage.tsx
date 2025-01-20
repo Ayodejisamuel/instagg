@@ -14,7 +14,6 @@ const ProfilePage = () => {
   const { isLoading, error } = useGetUserProfile(username); // Fetch user profile data
   const userProfile = useUserProfileStore((state) => state.userProfile); // Access user profile from state management
 
-  // Handle error notification using toast
   useEffect(() => {
     if (error) {
       toast.error(`Error: ${error}`, {

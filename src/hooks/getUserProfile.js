@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import useUserProfileStore from "../store/userProfileStore";
 
 const useGetUserProfile = (username) => {
+
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
@@ -33,26 +34,25 @@ const useGetUserProfile = (username) => {
 
         const q = query(
           collection(firestore, "users"),
-          where("userName", "==", username) // Ensure username is passed correctly here
+          where("userName", "==", username) 
         );
 
         const querySnapshot = await getDocs(q);
 
         if (querySnapshot.empty) {
-          console.log("No user found for username:", username);
+       toast.error('No username found', toastOptions)
           setUserProfile(null);
         } else {
           let userDoc;
 
           querySnapshot.forEach((doc) => {
-            console.log("User document found:", doc.data());
             userDoc = doc.data();
           });
 
           setUserProfile(userDoc);
         }
       } catch (err) {
-        console.error("Error fetching user profile:", err.message);
+        toast.error("Error fetching user profile:", toastOptions);
         setError(err.message);
         toast.error(err.message, toastOptions);
       } finally {
