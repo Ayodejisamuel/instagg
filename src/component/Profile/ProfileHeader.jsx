@@ -1,8 +1,7 @@
-import { Flex, AvatarGroup, Avatar, VStack, Text, Button } from "@chakra-ui/react";
-// import { span } from "framer-motion";
+ import { Flex, AvatarGroup, Avatar, VStack, Text, Button } from "@chakra-ui/react";
 
 const ProfileHeader = ({ userProfile }) => {
-  const { username, posts, followers, following, fullName, bio } = userProfile;
+  const { userName, posts = [], followers = [], following = 0, fullName, bio, avatarUrl } = userProfile;
 
   return (
     <Flex
@@ -10,62 +9,72 @@ const ProfileHeader = ({ userProfile }) => {
       gap={{ base: 4, sm: 10 }}
       py={10}
     >
+      {/* Avatar Group */}
       <AvatarGroup
         size={{ base: "xl", md: "2xl" }}
-        justifySelf={"center"}
-        mx={"auto"}
-        alignItems={"center"}
+        justifySelf="center"
+        mx="auto"
+        alignItems="center"
       >
         <Avatar
-          name={username}
-          src={userProfile.avatarUrl || "default-avatar-url.jpg"}
+          name={userName}
+          src={avatarUrl || "default-avatar-url.jpg"}
         />
       </AvatarGroup>
-      <VStack alignItems={"start"} gap={2} w={"full"} mx={"auto"} flex={1}>
-        <Flex alignItems={"center"} justifyContent={{ base: "center", md: "center" }} gap={4}>
-          <Text fontSize={{ base: "sm", md: "lg" }} color={"whiteAlpha"}>
-            {username}
+
+      {/* User Info Section */}
+      <VStack align="start" gap={2} w="full" mx="auto" flex={1}>
+        {/* Username and Edit Button */}
+        <Flex align="center" justify={{ base: "center", md: "center" }} gap={4}>
+          <Text fontSize={{ base: "sm", md: "lg" }} color="whiteAlpha.900">
+            {userName}
           </Text>
           <Button
-            bg={"white"}
-            color={"black"}
+            bg="white"
+            color="black"
             size={{ base: "xs", md: "sm" }}
             _hover={{ bg: "whiteAlpha.800" }}
           >
             Edit Profile
           </Button>
         </Flex>
+
+        {/* Stats Section */}
         <Flex
-          alignItems={"center"}
-          justifyContent={{ base: "center", md: "center" }}
+          align="center"
+          justify={{ base: "center", md: "center" }}
           gap={{ base: 2, sm: 4 }}
           fontSize={{ base: "xs", md: "sm" }}
         >
           <Text>
-            <Text fontWeight={"bold"} mr={1}>
+            <Text as="span" fontWeight="bold" mr={1}>
               {posts.length}
             </Text>
             Posts
           </Text>
           <Text>
-            <Text fontWeight={"bold"} mr={2}>
+            <Text as="span" fontWeight="bold" mr={1}>
               {followers.length}
-            </Text>{" "}
+            </Text>
             Followers
           </Text>
           <Text>
-            <Text fontWeight={"bold"} mr={2}>
+            <Text as="span" fontWeight="bold" mr={1}>
               {following}
-            </Text>{" "}
+            </Text>
             Following
           </Text>
         </Flex>
-        <Flex justifyContent={{ base: "center", md: "center" }}>
-          <Text fontSize={"sm"} color={"gray.500"}>
+
+        {/* Full Name */}
+        <Flex justify={{ base: "center", md: "center" }}>
+          <Text fontSize="sm" color="gray.500">
             {fullName}
           </Text>
         </Flex>
-        <Flex justifyContent={{ base: "center", md: "center" }} fontSize={"sm"}>
+
+        {/* Bio */}
+        <Flex justify={{ base: "center", md: "center" }} fontSize="sm">
           {bio || "This user has no bio yet."}
         </Flex>
       </VStack>

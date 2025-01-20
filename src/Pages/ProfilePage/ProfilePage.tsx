@@ -1,46 +1,76 @@
+import React, { useEffect } from "react";
 import { Flex, Container, Text } from "@chakra-ui/react";
+import { Link, useParams } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+
 import ProfileHeader from "../../component/Profile/ProfileHeader";
 import ProfilePost from "../../component/Profile/ProfilePosts";
 import ProfileTabs from "../../component/Profile/ProfileTabs";
 import useGetUserProfile from "../../hooks/getUserProfile";
- import useUserProfileStore from '../../store/userProfileStore';
-import React, { useEffect } from "react";
-import { toast, ToastContainer } from "react-toastify";
-import { Link, useParams } from "react-router-dom";
+import useUserProfileStore from "../../store/userProfileStore";
 
 const ProfilePage = () => {
-  const { username } = useParams();
-  const { isLoading, error } = useGetUserProfile(username);
-  const userProfile = useUserProfileStore((state) => state.userProfile);
+  const { username } = useParams(); // Get the username from URL parameters
+  const { isLoading, error } = useGetUserProfile(username); // Fetch user profile data
+  const userProfile = useUserProfileStore((state) => state.userProfile); // Access user profile from state management
 
+  // Handle error notification using toast
   useEffect(() => {
     if (error) {
-      toast.error(`Error: ${error}`);
+      toast.error(`Error: ${error}`, {
+        position: "bottom-right",
+        autoClose: 8000,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+        style: {
+          backgroundColor: "#2b3548",
+          color: "#fff",
+          fontSize: "16px",
+          borderRadius: "10px",
+        },
+      });
     }
   }, [error]);
 
+  // Show loading state
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Text fontSize="xl" textAlign="center" mt={10}>Loading...</Text>;
   }
 
+  // Handle case where user profile is not found
   if (!userProfile || Object.keys(userProfile).length === 0) {
     return (
-      <Flex flexDir={"column"} alignItems={"center"} mx={"auto"}>
-        <Text fontSize={"2xl"}>User Not Found</Text>
-        <Link to={"/"}>Go Home</Link>
+      <Flex flexDirection="column" alignItems="center" mt={10}>
+        <Text fontSize="2xl" fontWeight="bold" color="red.500">User Not Found</Text>
+        <Link to="/">
+          <Text fontSize="lg" color="blue.500" mt={2}>Go Home</Text>
+        </Link>
       </Flex>
     );
   }
 
+  // Render user profile information
   return (
-    <Container maxW="container.lg" py={2}>
-      <Flex py={10} px={4} pl={{ base: 4, md: 10 }} w={"full"} mx={"auto"} direction={"column"}>
+    <Container maxW="container.lg" py={4}>
+      {/* Profile Header */}
+      <Flex py={10} px={{ base: 4, md: 10 }} direction="column" align="center">
         <ProfileHeader userProfile={userProfile} />
       </Flex>
-      <Flex px={{ base: 2, sm: 4 }} borderTop={"1px solid "} color={"whiteAlpha.300"} w={"full"} direction={"column"}>
+
+      {/* Profile Tabs and Posts */}
+      <Flex
+        px={{ base: 2, sm: 4 }}
+        borderTop="1px solid"
+        borderColor="whiteAlpha.300"
+        direction="column"
+        mt={4}
+      >
         <ProfileTabs userProfile={userProfile} />
         <ProfilePost userProfile={userProfile} />
       </Flex>
+
+      {/* Toast notifications */}
       <ToastContainer />
     </Container>
   );

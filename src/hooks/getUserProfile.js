@@ -2,9 +2,24 @@ import { query, where, getDocs, collection } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { firestore } from "../firebase/firebase";
 import { toast } from "react-toastify";
+import useUserProfileStore from "../store/userProfileStore";
 
 const useGetUserProfile = (username) => {
-  const [userProfile, setUserProfile] = useState(null);
+  const toastOptions = {
+    position: "bottom-right",
+    autoClose: 8000,
+    pauseOnHover: true,
+    draggable: true,
+    theme: "dark",
+    style: {
+      backgroundColor: "#2b3548",
+      color: "#fff",
+      fontSize: "16px",
+      borderRadius: "10px",
+    },
+  };
+
+  const { userProfile, setUserProfile } = useUserProfileStore();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -14,28 +29,30 @@ const useGetUserProfile = (username) => {
       setError(null);
 
       try {
+        console.log(`Fetching profile for username: ${username}`);
+
         const q = query(
           collection(firestore, "users"),
-          where("username", "==", username)
+          where("userName", "==", username) // Ensure username is passed correctly here
         );
-console.log(username)
+
         const querySnapshot = await getDocs(q);
 
         if (querySnapshot.empty) {
-          console.log(userProfile)
-          setUserProfile();
-        
+          console.log("No user found for username:", username);
+          setUserProfile(null);
         } else {
           let userDoc;
-       
+
           querySnapshot.forEach((doc) => {
-            console.log(doc.data())
+            console.log("User document found:", doc.data());
             userDoc = doc.data();
-  
           });
+
           setUserProfile(userDoc);
         }
       } catch (err) {
+        console.error("Error fetching user profile:", err.message);
         setError(err.message);
         toast.error(err.message, toastOptions);
       } finally {
