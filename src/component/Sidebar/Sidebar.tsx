@@ -1,18 +1,22 @@
 import React from "react";
 import { Box, Flex, Avatar, Text, Tooltip } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
-import { InstagramLogo, InstagramMobileLogo, CreatePostLogo, SearchLogo, NotificationsLogo } from "../../assets/constants";
+import {
+  InstagramLogo,
+  InstagramMobileLogo,
+  CreatePostLogo,
+  SearchLogo,
+  NotificationsLogo,
+} from "../../assets/constants";
 import { AiFillHome } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
 import useSignOut from "../../hooks/useSignOut";
 import { Navigate } from "react-router-dom";
 
 const Sidebar = () => {
-
-  const navigate = useNavigate()
-  const {handleLogout} = useSignOut();
+  const navigate = useNavigate();
+  const { handleLogout } = useSignOut();
   const sidebarItems = [
-
     {
       Icon: <AiFillHome size={25} />,
       text: "Home",
@@ -34,7 +38,13 @@ const Sidebar = () => {
       link: "/create",
     },
     {
-      Icon: <Avatar size="sm" name="Determinant" src="https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/profilepic_sbwsbl.jpg" />,
+      Icon: (
+        <Avatar
+          size="sm"
+          name="Determinant"
+          src="https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/profilepic_sbwsbl.jpg"
+        />
+      ),
       text: "Profile",
       link: "/determinant",
     },
@@ -54,7 +64,7 @@ const Sidebar = () => {
       <Flex direction="column" gap={10} w="full" height="full">
         {/* Desktop Logo */}
         <Box
-        as={Link}
+          as={Link}
           to="/"
           pl={2}
           display={{ base: "none", md: "block" }}
@@ -66,14 +76,14 @@ const Sidebar = () => {
 
         {/* Mobile Logo */}
         <Box
-        as={Link}
+          as={Link}
           to="/"
           p={2}
           display={{ base: "block", md: "none" }}
           borderRadius={6}
           _hover={{ bg: "whiteAlpha.200" }}
           w={10}
-          m={'1px auto'}
+          m={"1px auto"}
           cursor="pointer"
         >
           <InstagramMobileLogo />
@@ -81,6 +91,7 @@ const Sidebar = () => {
 
         {/* Sidebar Items */}
         <Flex direction="column" gap={5}>
+          
           {sidebarItems.map((item, index) => (
             <Tooltip
               key={index}
@@ -88,13 +99,13 @@ const Sidebar = () => {
               placement="right"
               openDelay={500}
               hasArrow
-              display={{base:'block', md:'none'}}
+              display={{ base: "block", md: "none" }}
             >
               <Box
                 as={Link}
                 to={item.link || "#"}
                 display="flex"
-                justifyContent={{base:'center', md:'left'}}
+                justifyContent={{ base: "center", md: "left" }}
                 alignItems="center"
                 gap={4}
                 _hover={{ bg: "whiteAlpha.400" }}
@@ -110,32 +121,32 @@ const Sidebar = () => {
           ))}
         </Flex>
         <Tooltip
-  label="Logout"
-  placement="right"
-  openDelay={500}
-  hasArrow
-  display={{ base: "block", md: "none" }}
->
-  <Box
-    as="button"
-    onClick={async () => {
-      const success = await handleLogout();
-      if (success) {
- navigate('/auth');
-      }
-    }}
-    display="flex"
-    justifyContent={{ base: "center", md: "left" }}
-    alignItems="center"
-    gap={4}
-    _hover={{ bg: "whiteAlpha.400" }}
-    borderRadius={6}
-    p={2}
-  >
-    <BiLogOut size={25} />
-    <Box display={{ base: "none", md: "block" }}>Logout</Box>
-  </Box>
-</Tooltip>
+          label="Logout"
+          placement="right"
+          openDelay={500}
+          hasArrow
+          display={{ base: "block", md: "none" }}
+        >
+          <Box
+            as="button"
+            onClick={async () => {
+              const success = await handleLogout();
+              if (success) {
+                navigate("/auth");
+              }
+            }}
+            display="flex"
+            justifyContent={{ base: "center", md: "left" }}
+            alignItems="center"
+            gap={4}
+            _hover={{ bg: "whiteAlpha.400" }}
+            borderRadius={6}
+            p={2}
+          >
+            <BiLogOut size={25} />
+            <Box display={{ base: "none", md: "block" }}>Logout</Box>
+          </Box>
+        </Tooltip>
       </Flex>
     </Box>
   );
