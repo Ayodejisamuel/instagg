@@ -10,9 +10,9 @@ import useGetUserProfile from "../../hooks/getUserProfile";
 import useUserProfileStore from "../../store/userProfileStore";
 
 const ProfilePage = () => {
-  const { username } = useParams(); // Get the username from URL parameters
-  const { isLoading, error } = useGetUserProfile(username); // Fetch user profile data
-  const userProfile = useUserProfileStore((state) => state.userProfile); // Access user profile from state management
+  const { username } = useParams(); 
+  const { isLoading, error } = useGetUserProfile(username); 
+  const userProfile = useUserProfileStore((state) => state.userProfile);
 
   useEffect(() => {
     if (error) {
@@ -34,16 +34,24 @@ const ProfilePage = () => {
 
   // Show loading state
   if (isLoading) {
-    return <Text fontSize="xl" textAlign="center" mt={10}>Loading...</Text>;
+    return (
+      <Text fontSize="xl" textAlign="center" mt={10}>
+        Loading...
+      </Text>
+    );
   }
 
   // Handle case where user profile is not found
   if (!userProfile || Object.keys(userProfile).length === 0) {
     return (
       <Flex flexDirection="column" alignItems="center" mt={10}>
-        <Text fontSize="2xl" fontWeight="bold" color="red.500">User Not Found</Text>
+        <Text fontSize="2xl" fontWeight="bold" color="red.500">
+          User Not Found
+        </Text>
         <Link to="/">
-          <Text fontSize="lg" color="blue.500" mt={2}>Go Home</Text>
+          <Text fontSize="lg" color="blue.500" mt={2}>
+            Go Home
+          </Text>
         </Link>
       </Flex>
     );

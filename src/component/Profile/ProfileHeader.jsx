@@ -1,10 +1,27 @@
- import { Flex, AvatarGroup, Avatar, VStack, Text, Button } from "@chakra-ui/react";
-  import useAuthStore from "../../store/authStore";
+import {
+  Flex,
+  AvatarGroup,
+  Avatar,
+  VStack,
+  Text,
+  Button,
+} from "@chakra-ui/react";
+import useAuthStore from "../../store/authStore";
 const ProfileHeader = ({ userProfile }) => {
-  const { userName, posts = [], followers = [], following = 0, fullName, bio, profilePicURL } = userProfile;
-  const authUser = useAuthStore(state => state.user)
-  const visitOwnerProfile = authUser && authUser.userName === userProfile.userName
-alert(userProfile.userName)
+  const {
+    userName,
+    posts = [],
+    followers = [],
+    following = 0,
+    fullName,
+    bio,
+    profilePicURL,
+  } = userProfile;
+  const authUser = useAuthStore((state) => state.user);
+  const visitOwnerProfile =
+    authUser && authUser.userName === userProfile.userName;
+  const visitUsersProfile =
+    authUser && authUser.userName !== userProfile.userName;
   return (
     <Flex
       direction={{ base: "column", md: "row" }}
@@ -27,21 +44,44 @@ alert(userProfile.userName)
       {/* User Info Section */}
       <VStack align="start" gap={2} w="full" mx="auto" flex={1}>
         {/* Username and Edit Button */}
-        {visitOwnerProfile && 
-         <Flex align="center" justify={{ base: "center", md: "center" }} gap={4}>
-         <Text fontSize={{ base: "sm", md: "lg" }} color="whiteAlpha.900">
-           {userName}
-         </Text>
-         <Button
-           bg="white" 
-           color="black"
-           size={{ base: "xs", md: "sm" }}
-           _hover={{ bg: "whiteAlpha.800" }}
-         >
-           Edit Profile
-         </Button>
-       </Flex> }
-       
+        {visitOwnerProfile && (
+          <Flex
+            align="center"
+            justify={{ base: "center", md: "center" }}
+            gap={4}
+          >
+            <Text fontSize={{ base: "sm", md: "lg" }} color="whiteAlpha.900">
+              {userName}
+            </Text>
+            <Button
+              bg="white"
+              color="black"
+              size={{ base: "xs", md: "sm" }}
+              _hover={{ bg: "whiteAlpha.800" }}
+            >
+              Edit Profile
+            </Button>
+          </Flex>
+        )}
+        {visitUsersProfile && (
+          <Flex
+            align="center"
+            justify={{ base: "center", md: "center" }}
+            gap={4}
+          >
+            <Text fontSize={{ base: "sm", md: "lg" }} color="whiteAlpha.900">
+              {userName}
+            </Text>
+            <Button
+              bg="white"
+              color="black"
+              size={{ base: "xs", md: "sm" }}
+              _hover={{ bg: "whiteAlpha.800" }}
+            >
+              Follow
+            </Button>
+          </Flex>
+        )}
 
         {/* Stats Section */}
         <Flex

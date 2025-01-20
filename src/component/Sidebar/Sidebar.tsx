@@ -14,13 +14,11 @@ import useAuthStore from "../../store/authStore";
 import useSignOut from "../../hooks/useSignOut";
 
 const Sidebar = () => {
-  const authUserr = useAuthStore((state) => state.user); // Get user from store
+  const authUserr = useAuthStore((state) => state.user); 
   const navigate = useNavigate();
   const { handleLogout } = useSignOut();
 
-  // Ensure path defaults to a fallback if userName is not available
   const path = authUserr?.userName || "default"; 
-  // console.log("authUserr:", authUserr); // Debugging output
 
   const sidebarItems = [
     {
