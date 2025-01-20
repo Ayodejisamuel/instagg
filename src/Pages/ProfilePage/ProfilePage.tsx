@@ -3,13 +3,15 @@ import ProfileHeader from "../../component/Profile/ProfileHeader";
 import ProfilePost from "../../component/Profile/ProfilePosts";
 import ProfileTabs from "../../component/Profile/ProfileTabs";
 import useGetUserProfile from "../../hooks/getUserProfile";
+ import useUserProfileStore from '../../store/userProfileStore';
 import React, { useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { Link, useParams } from "react-router-dom";
 
 const ProfilePage = () => {
-  const { username } = useParams();  
-  const { userProfile, isLoading, error } = useGetUserProfile(username); 
+  const { username } = useParams();
+  const { isLoading, error } = useGetUserProfile(username);
+  const userProfile = useUserProfileStore((state) => state.userProfile);
 
   useEffect(() => {
     if (error) {
