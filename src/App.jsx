@@ -15,9 +15,9 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./firebase/firebase";
 
 function App() {
-  // const authUser = useAuthStore((state) => state.user);
+  // const authUserr = useAuthStore((state) => state.user);
   const [authUser] = useAuthState(auth)
-
+// const path =  authUserr.uid
   return (
     <ChakraProvider>
       <Router basename="/instagg">

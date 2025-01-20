@@ -10,12 +10,18 @@ import {
 } from "../../assets/constants";
 import { AiFillHome } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
+import useAuthStore from "../../store/authStore";
 import useSignOut from "../../hooks/useSignOut";
-import { Navigate } from "react-router-dom";
 
 const Sidebar = () => {
+  const authUserr = useAuthStore((state) => state.user); // Get user from store
   const navigate = useNavigate();
   const { handleLogout } = useSignOut();
+
+  // Ensure path defaults to a fallback if userName is not available
+  const path = authUserr?.userName || "default"; 
+  console.log("authUserr:", authUserr); // Debugging output
+
   const sidebarItems = [
     {
       Icon: <AiFillHome size={25} />,
@@ -41,12 +47,12 @@ const Sidebar = () => {
       Icon: (
         <Avatar
           size="sm"
-          name="Determinant"
-          src="https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/profilepic_sbwsbl.jpg"
+          name={authUserr?.userName || "User"} // Fallback to "User" if userName is unavailable
+          src={authUserr?.userName || "https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/profilepic_sbwsbl.jpg"} // Use default image if profilePic is unavailable
         />
       ),
       text: "Profile",
-      link: "/determinant",
+      link: `/${path}`, // Dynamic link with fallback
     },
   ];
 
@@ -91,7 +97,6 @@ const Sidebar = () => {
 
         {/* Sidebar Items */}
         <Flex direction="column" gap={5}>
-          
           {sidebarItems.map((item, index) => (
             <Tooltip
               key={index}
@@ -120,6 +125,8 @@ const Sidebar = () => {
             </Tooltip>
           ))}
         </Flex>
+
+        {/* Logout */}
         <Tooltip
           label="Logout"
           placement="right"
