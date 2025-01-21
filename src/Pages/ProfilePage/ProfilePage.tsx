@@ -60,7 +60,7 @@ const ProfilePage = () => {
   return (
     <Container maxW="container.lg" py={4}>
       {/* Profile Header */}
-      <Flex py={10} px={{ base: 4, md: 10 }} direction="column" align="center">
+      <Flex py={10} px={{ base: 4, md: 10 }} direction="column" >
         <ProfileHeader userProfile={userProfile} />
       </Flex>
 

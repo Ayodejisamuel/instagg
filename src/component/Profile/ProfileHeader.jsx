@@ -22,13 +22,15 @@ const ProfileHeader = ({ userProfile }) => {
     authUser && authUser.userName === userProfile.userName;
   const visitUsersProfile =
     authUser && authUser.userName !== userProfile.userName;
+    
   return (
     <Flex
       direction={{ base: "column", md: "row" }}
       gap={{ base: 4, sm: 10 }}
       py={10}
+      mx={{ base: 'auto', md: '1px' }}
     >
-      {/* Avatar Group */}
+      
       <AvatarGroup
         size={{ base: "xl", md: "2xl" }}
         justifySelf="center"
@@ -40,10 +42,9 @@ const ProfileHeader = ({ userProfile }) => {
           src={profilePicURL || "default-avatar-url.jpg"}
         />
       </AvatarGroup>
-
-      {/* User Info Section */}
+ 
       <VStack align="start" gap={2} w="full" mx="auto" flex={1}>
-        {/* Username and Edit Button */}
+    
         {visitOwnerProfile && (
           <Flex
             align="center"
@@ -83,7 +84,7 @@ const ProfileHeader = ({ userProfile }) => {
           </Flex>
         )}
 
-        {/* Stats Section */}
+  
         <Flex
           align="center"
           justify={{ base: "center", md: "center" }}
@@ -110,14 +111,14 @@ const ProfileHeader = ({ userProfile }) => {
           </Text>
         </Flex>
 
-        {/* Full Name */}
+    
         <Flex justify={{ base: "center", md: "center" }}>
           <Text fontSize="sm" color="gray.500">
             {fullName}
           </Text>
         </Flex>
 
-        {/* Bio */}
+      
         <Flex justify={{ base: "center", md: "center" }} fontSize="sm">
           {bio || "This user has no bio yet."}
         </Flex>
