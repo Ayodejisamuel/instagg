@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Flex, Container, Text } from "@chakra-ui/react";
 import { Link, useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-
 import ProfileHeader from "../../component/Profile/ProfileHeader";
 import ProfilePost from "../../component/Profile/ProfilePosts";
 import ProfileTabs from "../../component/Profile/ProfileTabs";
