@@ -7,7 +7,11 @@ import {
   Button,
 } from "@chakra-ui/react";
 import useAuthStore from "../../store/authStore";
+import EditProfile from "./EditProfile";
+import { useDisclosure } from "@chakra-ui/react";
+
 const ProfileHeader = ({ userProfile }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const {
     userName,
     posts = [],
@@ -30,7 +34,6 @@ const ProfileHeader = ({ userProfile }) => {
       py={10}
       mx={{ base: 'auto', md: '1px' }}
     >
-      
       <AvatarGroup
         size={{ base: "xl", md: "2xl" }}
         justifySelf="center"
@@ -42,9 +45,7 @@ const ProfileHeader = ({ userProfile }) => {
           src={profilePicURL || "default-avatar-url.jpg"}
         />
       </AvatarGroup>
- 
       <VStack align="start" gap={2} w="full" mx="auto" flex={1}>
-    
         {visitOwnerProfile && (
           <Flex
             align="center"
@@ -59,6 +60,7 @@ const ProfileHeader = ({ userProfile }) => {
               color="black"
               size={{ base: "xs", md: "sm" }}
               _hover={{ bg: "whiteAlpha.800" }}
+              onClick={onOpen}
             >
               Edit Profile
             </Button>
@@ -83,8 +85,6 @@ const ProfileHeader = ({ userProfile }) => {
             </Button>
           </Flex>
         )}
-
-  
         <Flex
           align="center"
           justify={{ base: "center", md: "center" }}
@@ -110,19 +110,17 @@ const ProfileHeader = ({ userProfile }) => {
             Following
           </Text>
         </Flex>
-
-    
+        
         <Flex justify={{ base: "center", md: "center" }}>
           <Text fontSize="sm" color="gray.500">
             {fullName}
           </Text>
         </Flex>
-
-      
         <Flex justify={{ base: "center", md: "center" }} fontSize="sm">
           {bio || "This user has no bio yet."}
         </Flex>
       </VStack>
+      {isOpen && <EditProfile  isOpen={isOpen} onClose={onClose}/>}
     </Flex>
   );
 };
