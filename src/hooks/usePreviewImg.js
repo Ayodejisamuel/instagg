@@ -21,7 +21,7 @@ const usePreviewImg = () => {
 const handleImageChange = (e) => {
 
     const file = e.target.files[0]
-    if (file && file.type.startswith('image/')) {
+    if (file && file.type.startsWith('image/')) {
         if(file.size > maxFileSize) {
             toast.error('file size must be less than 2MB', toastOptions);
             setSelectedFile(null)

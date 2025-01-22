@@ -29,6 +29,7 @@ const EditProfile = ({ isOpen, onClose }) => {
 		bio : ''
 	})
 	const authUser = useAuthStore(state => state.user)
+	console.log(selectedFile)
 	const handleSubmitProfile = () => {
 		console.log(inputs)
 	}
