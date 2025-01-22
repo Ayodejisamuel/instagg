@@ -22,7 +22,7 @@ const ProfileHeader = ({ userProfile }) => {
     authUser && authUser.userName === userProfile.userName;
   const visitUsersProfile =
     authUser && authUser.userName !== userProfile.userName;
-    
+
   return (
     <Flex
       direction={{ base: "column", md: "row" }}
@@ -77,7 +77,7 @@ const ProfileHeader = ({ userProfile }) => {
               bg="white"
               color="black"
               size={{ base: "xs", md: "sm" }}
-              _hover={{ bg: "whiteAlpha.800" }}
+              _hover={{ bg: "blue.600" }}
             >
               Follow
             </Button>
