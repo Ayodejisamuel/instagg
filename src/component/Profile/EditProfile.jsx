@@ -16,12 +16,15 @@ import {
 	ModalOverlay,
 	Stack,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import useAuthStore from "../../store/authStore";
+import usePreviewImg from "../../hooks/usePreviewImg";
 
 const EditProfile = ({ isOpen, onClose }) => {
+	const {handleImageChange, selectedFile, setSelectedFile} = usePreviewImg()
+	const fileRef = useRef(null)
 	const [inputs, setInputs ] = useState({
-		inputs : '',
+		userName : '',
 		fullName: '',
 		bio : ''
 	})
@@ -46,11 +49,12 @@ const EditProfile = ({ isOpen, onClose }) => {
 								<FormControl>
 									<Stack direction={["column", "row"]} spacing={6}>
 										<Center>
-											<Avatar size='xl' src={""} border={"2px solid white "} />
+											<Avatar size='xl' src={selectedFile || authUser.profilePicURL} border={"2px solid white "} />
 										</Center>
 										<Center w='full'>
-											<Button w='full'>Edit Profile Picture</Button>
+											<Button onClick={() => fileRef.current.click()} w='full'>Edit Profile Picture</Button>
 										</Center>
+										<Input hidden type="file" ref={fileRef} onChange={handleImageChange}/>
 									</Stack>
 								</FormControl>
 
@@ -58,12 +62,10 @@ const EditProfile = ({ isOpen, onClose }) => {
 									<FormLabel fontSize={"sm"}>Full Name</FormLabel>
 									<Input placeholder={"Full Name"} size={"sm"} type={"text"}  value={inputs.fullName || authUser.fullName} onChange={(e) => setInputs({...inputs, fullName: e.target.value})}/>
 								</FormControl>
-
 								<FormControl>
 									<FormLabel fontSize={"sm"}>Username</FormLabel>
-									<Input placeholder={"Username"} size={"sm"} type={"text"} value={inputs.username || authUser.userName} onChange={(e) => setInputs({...inputs, username: e.target.value})}/>
+									<Input placeholder={"Username"} size={"sm"} type={"text"} value={inputs.userName || authUser.userName} onChange={(e) => setInputs({...inputs, userName: e.target.value})}/>
 								</FormControl>
-
 								<FormControl>
 									<FormLabel fontSize={"sm"}>Bio</FormLabel>
 									<Input placeholder={"Bio"} size={"sm"} type={"text"} value={inputs.bio || authUser.bio} onChange={ (e) => setInputs({...inputs, bio: e.target.value})}/>
