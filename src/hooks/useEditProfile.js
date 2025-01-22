@@ -22,6 +22,7 @@ const useEditProfile = () => {
 
 const [isUpdating, setIsUpdating] = useState(false)
 const authUser = useAuthStore(state => state.user)
+const setAuthUser = useAuthStore(state => state.setUser)
 
     const editProfile = async(inputs, selectedFile) => {
 
