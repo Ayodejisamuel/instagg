@@ -35,9 +35,11 @@ import {
 	});
   
 	const handleSubmitProfile = async () => {
+		console.log("Submit button clicked"); 
 	  try {
 		await editProfile(inputs, selectedFile);
 		setSelectedFile(null);
+
 		onClose();
 	  } catch (error) {
 		console.error("Error while editing profile:", error);

@@ -30,13 +30,14 @@ const usePreviewImg = () => {
 
     }
 
-    if (!file || !file.type.startsWith("image/" || file.size > maxFileSize)) {
+    if (!file || !file.type.startsWith("image/")) {
 setSelectedFile(null) // clear previous file
       toast.error("Please upload a valid image file", toastOptions);
       return;
     }
     
     if (file.size > maxFileSize) {
+      setSelectedFile(null)
       toast.error("File size must be less than 2MB", toastOptions);
       return;
     }
