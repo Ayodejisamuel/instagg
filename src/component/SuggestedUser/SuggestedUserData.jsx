@@ -17,8 +17,8 @@ const SuggestedUserData = ({name, avatar, followers}) => {
           </Box>
         </Flex>
         <Box
-          as={Link}
-          to={"/auth"}
+          // as={Link}
+          to={""}
           fontSize={12}
           color={"blue.500"}
           _hover={{ color: "white", textDecoration: "none" }}

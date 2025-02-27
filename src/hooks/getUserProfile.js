@@ -4,6 +4,7 @@ import { firestore } from "../firebase/firebase";
 import { toast } from "react-toastify";
 import useUserProfileStore from "../store/userProfileStore";
 
+
 const useGetUserProfile = (username) => {
 
   const toastOptions = {
@@ -25,6 +26,7 @@ const useGetUserProfile = (username) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+
     const getProfile = async () => {
       setIsLoading(true);
       setError(null);

@@ -40,19 +40,22 @@ const ProfileHeader = ({ userProfile }) => {
         mx="auto"
         alignItems="center"
       >
+        
         <Avatar
           name={userName}
           src={profilePicURL || "default-avatar-url.jpg"}
         />
       </AvatarGroup>
       <VStack align="start" gap={2} w="full" mx="auto" flex={1}>
+
         {visitOwnerProfile && (
+
           <Flex
             align="center"
             justify={{ base: "center", md: "center" }}
             gap={4}
           >
-            <Text fontSize={{ base: "sm", md: "lg" }} color="whiteAlpha.900">
+            <Text fontSize={{ base: "sm", md: "lg" }}  fontWeight='bold' color="whiteAlpha.900">
               {userName}
             </Text>
             <Button
