@@ -1,5 +1,4 @@
 import { Flex, Box, Avatar, Text } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
 
 const SuggestedUserData = ({name, avatar, followers}) => {
 

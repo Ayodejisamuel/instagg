@@ -9,6 +9,7 @@ import {
 import useAuthStore from "../../store/authStore";
 import EditProfile from "./EditProfile";
 import { useDisclosure } from "@chakra-ui/react";
+import useFollowUsers from "../../hooks/useFollowUsers";
 
 const ProfileHeader = ({ userProfile }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -22,6 +23,9 @@ const ProfileHeader = ({ userProfile }) => {
     profilePicURL,
   } = userProfile;
   const authUser = useAuthStore((state) => state.user);
+
+  const { isUpdating, isFollowing, handleFollowers } = useFollowUsers(userProfile.uid)
+
   const visitOwnerProfile =
     authUser && authUser.userName === userProfile.userName;
   const visitUsersProfile =
@@ -83,7 +87,8 @@ const ProfileHeader = ({ userProfile }) => {
               color="black"
               size={{ base: "xs", md: "sm" }}
               _hover={{ bg: "blue.600" }}
-            >
+              onClick={handleFollowers}
+              isLoading={isUpdating} >
               Follow
             </Button>
           </Flex>
