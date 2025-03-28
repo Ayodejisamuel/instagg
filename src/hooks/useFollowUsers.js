@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { arrayRemove, arrayUnion, updateDoc, doc } from "firebase/firestore";
 import { firestore } from "../firebase/firebase";
 import useAuthStore from "../store/authStore";
-import getUserProfile from "./useEditProfile";
+import getUserProfile from "./getUserProfile";
 import { toast } from "react-toastify";
 
 const useFollower = (userId) => {
@@ -28,7 +28,6 @@ const useFollower = (userId) => {
 
   const handleFollowers = async () => {
     if (!authUser) return;
-
     setIsUpdating(true);
     try {
       const currentUserRef = doc(firestore, "users", authUser.uid);

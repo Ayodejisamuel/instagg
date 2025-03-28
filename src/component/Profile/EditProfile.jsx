@@ -26,7 +26,7 @@ import {
 	const { isUpdating, editProfile } = useEditProfile();
 	const fileRef = useRef(null);
 	const authUser = useAuthStore((state) => state.user);
-	console.lo(selectedFile)
+	console.log(selectedFile)
   
 	const [inputs, setInputs] = useState({
 	  userName: authUser?.userName || "",

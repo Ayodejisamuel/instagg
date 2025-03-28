@@ -17,7 +17,7 @@ const ProfileHeader = ({ userProfile }) => {
     userName,
     posts = [],
     followers = [],
-    following = 0,
+    following = [],
     fullName,
     bio,
     profilePicURL,
@@ -89,7 +89,7 @@ const ProfileHeader = ({ userProfile }) => {
               _hover={{ bg: "blue.600" }}
               onClick={handleFollowers}
               isLoading={isUpdating} >
-              Follow
+              {isFollowing? 'Unfollow': 'Follow'}
             </Button>
           </Flex>
         )}
@@ -106,14 +106,14 @@ const ProfileHeader = ({ userProfile }) => {
             Posts
           </Text>
           <Text>
-            <Text as="span" fontWeight="bold" mr={1}>
-              {followers.length}
+            <Text as="span" fontWeight="bold" mr={1}> 
+              {followers}
             </Text>
             Followers
           </Text>
           <Text>
-            <Text as="span" fontWeight="bold" mr={1}>
-              {following}
+            <Text as="span" fontWeight="bold" mr={1}> 
+              {following.length}
             </Text>
             Following
           </Text>
