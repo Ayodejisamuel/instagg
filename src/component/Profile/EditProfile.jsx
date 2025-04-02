@@ -20,13 +20,28 @@ import {
   import useAuthStore from "../../store/authStore";
   import usePreviewImg from "../../hooks/usePreviewImg";
   import useEditProfile from "../../hooks/useEditProfile";
+  import { toast } from "react-toastify";
   
   const EditProfile = ({ isOpen, onClose }) => {
+	
+	const toastOptions = {
+		position: "bottom-right",
+		autoClose: 8000,
+		pauseOnHover: true,
+		draggable: true,
+		theme: "dark",
+		style: {
+		  backgroundColor: "#2b3548",
+		  color: "#fff",
+		  fontSize: "16px",
+		  borderRadius: "10px",
+		},
+	  };
 	const { handleImageChange, selectedFile, setSelectedFile } = usePreviewImg();
 	const { isUpdating, editProfile } = useEditProfile();
 	const fileRef = useRef(null);
 	const authUser = useAuthStore((state) => state.user);
-	console.log(selectedFile)
+	// console.log(selectedFile)
   
 	const [inputs, setInputs] = useState({
 	  userName: authUser?.userName || "",
@@ -35,14 +50,14 @@ import {
 	});
   
 	const handleSubmitProfile = async () => {
-		console.log("Submit button clicked"); 
+		// console.log("Submit button clicked"); 
 	  try {
 		await editProfile(inputs, selectedFile);
 		setSelectedFile(null);
 
 		onClose();
 	  } catch (error) {
-		console.error("Error while editing profile:", error);
+		toast.error("Error while editing profile:", error);
 	  }
 	};
   

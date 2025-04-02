@@ -9,7 +9,7 @@ const useAuthStore = create((set) => ({
   },
 
   logout: () => {
-    localStorage.removeItem("user-Info");
+    localStorage.removeItem("user-info");
     set({ user: null });
   },
 

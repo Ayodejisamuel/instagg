@@ -113,7 +113,7 @@ const ProfileHeader = ({ userProfile }) => {
           </Text>
           <Text>
             <Text as="span" fontWeight="bold" mr={1}> 
-              {following.length}
+              {following}
             </Text>
             Following
           </Text>

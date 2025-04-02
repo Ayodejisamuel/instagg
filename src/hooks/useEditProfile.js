@@ -1,36 +1,22 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { doc, updateDoc } from "firebase/firestore";
-import { ref, getDownloadURL, uploadString } from "firebase/storage";
-import { firestore, storage } from "../firebase/firebase";
+import { firestore } from "../firebase/firebase";
 import useAuthStore from "../store/authStore";
 import userProfileStore from "../store/userProfileStore";
+import uploadImageToCloudinary from "../utils/cloudinary"; // Import Cloudinary function
 
 const useEditProfile = () => {
-  
+
+  // console.log('edit profile funcion is runnin')
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
     pauseOnHover: true,
     draggable: true,
     theme: "dark",
-    style: {
-      backgroundColor: "#2b3548",
-      color: "#fff",
-      fontSize: "16px",
-      borderRadius: "10px",
-    },
+    style: { backgroundColor: "#2b3548", color: "#fff", fontSize: "16px", borderRadius: "10px" },
   };
-
-  const convertToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
-  };
-  
 
   const [isUpdating, setIsUpdating] = useState(false);
   const authUser = useAuthStore((state) => state.user);
@@ -39,41 +25,49 @@ const useEditProfile = () => {
 
   const editProfile = async (inputs, selectedFile) => {
     if (isUpdating || !authUser) return;
-
     setIsUpdating(true);
-    const storageRef = ref(storage, `profilePic/${authUser.uid}`);
-    const userDocRef = doc(firestore, "users", authUser.uid);
-    let profilePicURL = authUser.profilePicURL;
 
     try {
-      // Upload profile picture if selected
+      let profilePicURL = authUser.profilePicURL;
+    
+      // Upload new profile picture if provided
       if (selectedFile && selectedFile instanceof File) {
-        console.log("Selected file:", selectedFile);
-const profilePicBase64 = await convertToBase64(selectedFile)
-        await uploadString(storageRef, profilePicBase64, "data_url");
-        profilePicURL = await getDownloadURL(storageRef);
+      
+        console.log(selectedFile)
+        const uploadedImageUrl = await uploadImageToCloudinary(selectedFile);
+      
+        console.log("Uploaded Image URL:", uploadedImageUrl);
+        
+        if (uploadedImageUrl) profilePicURL = uploadedImageUrl;
       }
 
-      // Prepare updated user data
-      const updatedUser = { 
-        ...authUser,
-        fullName: inputs.fullName || authUser.fullName,
-        userName: inputs.userName || authUser.userName,
-        bio: inputs.bio || authUser.bio,
-        profilePicURL: profilePicURL || authUser.profilePicURL,
+      // Prepare only updated fields
+      const updatedFields = {
+        ...(inputs.fullName && { fullName: inputs.fullName }),
+        ...(inputs.userName && { userName: inputs.userName }),
+        ...(inputs.bio && { bio: inputs.bio }),
+        ...(profilePicURL !== authUser.profilePicURL && { profilePicURL }),
       };
 
-      // Update Firestore document
-      await updateDoc(userDocRef, updatedUser);
+      // Update Firestore only with changed fields
+      if (Object.keys(updatedFields).length > 0) {
+        await updateDoc(doc(firestore, "users", authUser.uid), updatedFields);
+      }
 
-      // Update local state and storage
+      // Merge new fields with current user
+      const updatedUser = { ...authUser, ...updatedFields };
+
+      // Update local state & storage
       setAuthUser(updatedUser);
       setUserProfile(updatedUser);
       localStorage.setItem("user-info", JSON.stringify(updatedUser));
+      console.log('edit profile funcion is runnin')
+      console.log(selectedFile)
       toast.success("Profile updated successfully", toastOptions);
+
     } catch (error) {
-      console.error(error);
-      toast.error(error.message || "Error updating profile", toastOptions);
+      console.error("Error updating profile:", error);
+      toast.error("Error updating profile", toastOptions);
     } finally {
       setIsUpdating(false);
     }

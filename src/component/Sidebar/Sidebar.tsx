@@ -18,6 +18,7 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const { handleLogout } = useSignOut();
 console.log(authUserr)
+console.log(useAuthStore.getState())
   const path = authUserr?.userName || "default"; 
 
   const sidebarItems = [
