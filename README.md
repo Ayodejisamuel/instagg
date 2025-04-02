@@ -8,15 +8,15 @@ User Authentication: Users can sign up, log in, and authenticate using Firebase 
 Firestore Database: User data and other app-related information are stored in Firestore.
 
 
-Media Uploads: Users can upload images and other media files to Firebase Storage.
+Media Uploads: Due to Firestore Free plan limitations users can't upload images and other media files to Firebase Storage.
 Real-Time Data: Changes to user data and posts are reflected in real-time using Firestore.
 
 #Technologies Used
 
-React: Frontend library for building the user interface.
+React(Vite): Frontend library for building the user interface.
 Firebase: Backend-as-a-service for authentication, database (Firestore), and storage (Firebase Storage).
 Zustand: For state management.
-CSS: Styling and layout of the user interface.
+ChakraUI: Styling and layout of the user interface.
 Firebase SDK: Used to interact with Firebase services (Authentication, Firestore, and Firebase Storage).
 
 
