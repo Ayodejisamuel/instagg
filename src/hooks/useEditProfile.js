@@ -77,7 +77,7 @@ const useEditProfile = () => {
       localStorage.setItem("user-info", JSON.stringify(updatedUser));
   
       console.log("Profile updated successfully!");
-      toast.success("Profile updated successfully", toastOptions);
+      toast.success("Successful: Upgrade plan for Media Uploads", toastOptions);
   
     } catch (error) {
       console.error("Error updating profile:", error);
