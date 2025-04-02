@@ -6,6 +6,12 @@ import useAuthStore from "../store/authStore";
 import userProfileStore from "../store/userProfileStore";
 import uploadImageToCloudinary from "../utils/cloudinary"; // Import Cloudinary function
 
+const base64ToBlob = async (base64) => {
+  const res = await fetch(base64);
+  const blob = await res.blob();
+  return new File([blob], "profile-image.png", { type: blob.type });
+};
+
 const useEditProfile = () => {
 
   // console.log('edit profile funcion is runnin')
@@ -26,21 +32,31 @@ const useEditProfile = () => {
   const editProfile = async (inputs, selectedFile) => {
     if (isUpdating || !authUser) return;
     setIsUpdating(true);
-
+  
     try {
       let profilePicURL = authUser.profilePicURL;
-    
-      // Upload new profile picture if provided
-      if (selectedFile && selectedFile instanceof File) {
-      
-        console.log(selectedFile)
-        const uploadedImageUrl = await uploadImageToCloudinary(selectedFile);
-      
-        console.log("Uploaded Image URL:", uploadedImageUrl);
-        
+  
+      // Debug: Check initial selected file
+      console.log("Selected File:", selectedFile);
+  
+      // 🛠️ Convert Base64 to File if needed
+      if (selectedFile) {
+        let fileToUpload = selectedFile;
+  
+        if (typeof selectedFile === "string" && selectedFile.startsWith("data:image")) {
+          console.log("Detected Base64, converting to Blob...");
+          fileToUpload = await base64ToBlob(selectedFile);
+        }
+  
+        console.log("Final File to Upload:", fileToUpload);
+        console.log("File Type:", fileToUpload.type);
+        console.log("Is File?:", fileToUpload instanceof File);
+  
+        // Upload to Cloudinary
+        const uploadedImageUrl = await uploadImageToCloudinary(fileToUpload);
         if (uploadedImageUrl) profilePicURL = uploadedImageUrl;
       }
-
+  
       // Prepare only updated fields
       const updatedFields = {
         ...(inputs.fullName && { fullName: inputs.fullName }),
@@ -48,23 +64,21 @@ const useEditProfile = () => {
         ...(inputs.bio && { bio: inputs.bio }),
         ...(profilePicURL !== authUser.profilePicURL && { profilePicURL }),
       };
-
-      // Update Firestore only with changed fields
+  
+      // Update Firestore if there are changes
       if (Object.keys(updatedFields).length > 0) {
         await updateDoc(doc(firestore, "users", authUser.uid), updatedFields);
       }
-
-      // Merge new fields with current user
-      const updatedUser = { ...authUser, ...updatedFields };
-
+  
       // Update local state & storage
+      const updatedUser = { ...authUser, ...updatedFields };
       setAuthUser(updatedUser);
       setUserProfile(updatedUser);
       localStorage.setItem("user-info", JSON.stringify(updatedUser));
-      console.log('edit profile funcion is runnin')
-      console.log(selectedFile)
+  
+      console.log("Profile updated successfully!");
       toast.success("Profile updated successfully", toastOptions);
-
+  
     } catch (error) {
       console.error("Error updating profile:", error);
       toast.error("Error updating profile", toastOptions);
@@ -72,6 +86,8 @@ const useEditProfile = () => {
       setIsUpdating(false);
     }
   };
+  
+  
 
   return { editProfile, isUpdating };
 };

@@ -1,20 +1,33 @@
-import axios from "axios";
-
-const uploadImageToCloudinary = async (file) => {
-  const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dfkiftgfj/image/upload";  
-  const UPLOAD_PRESET = "ml_default"; // Set in Cloudinary settings
+const uploadImageToCloudinary = async (base64String) => {
+  const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dfkiftgfj/image/upload";
+  const UPLOAD_PRESET = "ml_default"; // Ensure this preset exists in your Cloudinary settings
 
   try {
+    // Convert Base64 to a File
+    const file = await base64ToBlob(base64String);
+    
+    // Prepare the form data
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("upload_preset", 'ml_default');
+    formData.append("upload_preset", UPLOAD_PRESET);
 
-    const response = await axios.post(CLOUDINARY_URL, formData);
-    alert(response.data)
+    // Send the request using fetch()
+    const response = await fetch(CLOUDINARY_URL, {
+      method: "POST",
+      body: formData,
+    });
 
-    return response.data.secure_url; // This is the uploaded image URL
+    // Parse the response as JSON
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(`Cloudinary Error: ${data.error?.message || "Unknown error"}`);
+    }
+
+    console.log("Cloudinary Upload Response:", data);
+    return data.secure_url;
   } catch (error) {
-    console.log("Cloudinary Upload Error:", error);
+    console.error("Cloudinary Upload Error:", error);
     return null;
   }
 };
