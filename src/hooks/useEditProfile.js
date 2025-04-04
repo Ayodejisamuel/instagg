@@ -4,7 +4,7 @@ import { doc, updateDoc } from "firebase/firestore";
 import { firestore } from "../firebase/firebase";
 import useAuthStore from "../store/authStore";
 import userProfileStore from "../store/userProfileStore";
-import uploadImageToCloudinary from "../utils/cloudinary"; // Import Cloudinary function
+import uploadImageToCloudinary from "../utils/cloudinary"; // Import Cloudinary function.
 
 const base64ToBlob = async (base64) => {
   const res = await fetch(base64);
@@ -39,7 +39,7 @@ const useEditProfile = () => {
       // Debug: Check initial selected file
       console.log("Selected File:", selectedFile);
   
-      // 🛠️ Convert Base64 to File if needed
+      // Convert Base64 to File if needed
       if (selectedFile) {
         let fileToUpload = selectedFile;
   
