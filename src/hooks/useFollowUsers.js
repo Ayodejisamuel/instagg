@@ -6,7 +6,6 @@ import getUserProfile from "./getUserProfile";
 import { toast } from "react-toastify";
 
 const useFollower = (userId) => {
-  
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
@@ -38,18 +37,70 @@ const useFollower = (userId) => {
       });
 
       await updateDoc(userToFollowOrUnfollowRef, {
-        followers: isFollowing ? arrayRemove(authUser.uid) : arrayUnion(authUser.uid),
+        followers: isFollowing
+          ? arrayRemove(authUser.uid)
+          : arrayUnion(authUser.uid),
       });
-
+      if (isFollowing) {
+        const updatedFollowing = authUser.following.filter((uid) => uid !== userId);
+        const updatedFollowers = userProfile.followers.filter((uid) => uid !== authUser.uid);
       
-      setAuthUser((prevAuthUser) => ({
-        ...prevAuthUser,
-        following: isFollowing
-          ? prevAuthUser.following.filter((uid) => uid !== userId)
-          : [...prevAuthUser.following, userId],
-      }));
+        setAuthUser({ ...authUser, following: updatedFollowing });
+        setUserProfile({ ...userProfile, followers: updatedFollowers });
+      
+        localStorage.setItem("user-info", JSON.stringify({ ...authUser, following: updatedFollowing }));
+        setIsFollowing(false);
+      } else {
+        const updatedFollowing = [...authUser.following, userId];
+        const updatedFollowers = [...userProfile.followers, authUser.uid];
+      
+        setAuthUser({ ...authUser, following: updatedFollowing });
+        setUserProfile({ ...userProfile, followers: updatedFollowers });
+      
+        localStorage.setItem("user-info", JSON.stringify({ ...authUser, following: updatedFollowing }));
+        setIsFollowing(true);
+      }
+      
+      // if (isFollowing) {
+      //   //unfollow
+      //   setAuthUser({
+      //     ...authUser,
+      //     following: authUser.following.filter((uid) => uid !== userId),
+      //   });
+      //   setUserProfile({
+      //     ...userProfile,
+      //     followers: userProfile.followers.filter((uid) => uid !== userId),
+      //   });
 
-      setIsFollowing(!isFollowing);
+      //   localStorage.setItem(
+      //     "user-info",
+      //     JSON.stringify({
+      //       ...authUser,
+      //       following: authUser.following.filter((uid) => uid !== userId),
+      //     })
+      //   );
+      //   setIsFollowing(false);
+      // } else {
+
+      //   //follow
+      //   setAuthUser({
+      //     ...authUser,
+      //     following: [...authUser.following, userId],
+      //   });
+      //   setUserProfile({
+      //     ...userProfile,
+      //     followers: [...userProfile.followers, userId],
+      //   });
+
+      //   localStorage.setItem(
+      //     "user-info",
+      //     JSON.stringify({
+      //       ...authUser,
+      //       following: [...authUser.following, userId],
+      //     })
+      //   );
+      //   setIsFollowing(true)
+      // }
     } catch (error) {
       toast.error(`Error: ${error.message}`, toastOptions);
     } finally {
