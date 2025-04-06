@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { arrayRemove, arrayUnion, updateDoc, doc } from "firebase/firestore";
 import { firestore } from "../firebase/firebase";
 import useAuthStore from "../store/authStore";
-import getUserProfile from "./getUserProfile";
+import useUserProfileStore from "../store/userProfileStore";
 import { toast } from "react-toastify";
 
 const useFollower = (userId) => {
@@ -19,11 +19,15 @@ const useFollower = (userId) => {
       borderRadius: "10px",
     },
   };
+
   const [isUpdating, setIsUpdating] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
 
-  const { authUser, setAuthUser } = useAuthStore();
-  const { userProfile, setUserProfile } = getUserProfile();
+  const authUser = useAuthStore((state) => state.user)
+  const setAuthUser = useAuthStore((state) => state.setUser)
+  const userProfile = useUserProfileStore((state) => state.userProfile);
+  const setUserProfile = useUserProfileStore((state) => state.setUserProfile);
+  
 
   const handleFollowers = async () => {
     if (!authUser) return;
@@ -55,52 +59,12 @@ const useFollower = (userId) => {
         const updatedFollowers = [...userProfile.followers, authUser.uid];
       
         setAuthUser({ ...authUser, following: updatedFollowing });
-        setUserProfile({ ...userProfile, followers: updatedFollowers });
+        // setUserProfile({ ...userProfile, followers: updatedFollowers });
       
         localStorage.setItem("user-info", JSON.stringify({ ...authUser, following: updatedFollowing }));
         setIsFollowing(true);
       }
-      
-      // if (isFollowing) {
-      //   //unfollow
-      //   setAuthUser({
-      //     ...authUser,
-      //     following: authUser.following.filter((uid) => uid !== userId),
-      //   });
-      //   setUserProfile({
-      //     ...userProfile,
-      //     followers: userProfile.followers.filter((uid) => uid !== userId),
-      //   });
-
-      //   localStorage.setItem(
-      //     "user-info",
-      //     JSON.stringify({
-      //       ...authUser,
-      //       following: authUser.following.filter((uid) => uid !== userId),
-      //     })
-      //   );
-      //   setIsFollowing(false);
-      // } else {
-
-      //   //follow
-      //   setAuthUser({
-      //     ...authUser,
-      //     following: [...authUser.following, userId],
-      //   });
-      //   setUserProfile({
-      //     ...userProfile,
-      //     followers: [...userProfile.followers, userId],
-      //   });
-
-      //   localStorage.setItem(
-      //     "user-info",
-      //     JSON.stringify({
-      //       ...authUser,
-      //       following: [...authUser.following, userId],
-      //     })
-      //   );
-      //   setIsFollowing(true)
-      // }
+     
     } catch (error) {
       toast.error(`Error: ${error.message}`, toastOptions);
     } finally {

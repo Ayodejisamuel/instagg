@@ -24,7 +24,7 @@ const ProfileHeader = ({ userProfile }) => {
   } = userProfile;
   const authUser = useAuthStore((state) => state.user);
 
-  const { isUpdating, isFollowing, handleFollowers } = useFollowUsers(userProfile.uid)
+  const { isUpdating, isFollowing, handleFollowers } = useFollowUsers(userProfile?.uid)
 
   const visitOwnerProfile =
     authUser && authUser.userName === userProfile.userName;
@@ -87,7 +87,10 @@ const ProfileHeader = ({ userProfile }) => {
               color="black"
               size={{ base: "xs", md: "sm" }}
               _hover={{ bg: "blue.600" }}
-              onClick={handleFollowers}
+              onClick ={ ()=> {
+                console.log('andle cliked')
+                handleFollowers()
+              }}
               isLoading={isUpdating} >
               {isFollowing? 'Unfollow': 'Follow'}
             </Button>
@@ -107,13 +110,13 @@ const ProfileHeader = ({ userProfile }) => {
           </Text>
           <Text>
             <Text as="span" fontWeight="bold" mr={1}> 
-              {followers}
+              {followers?.length || 0}
             </Text>
             Followers
           </Text>
           <Text>
             <Text as="span" fontWeight="bold" mr={1}> 
-              {following}
+              {following.length || 0}
             </Text>
             Following
           </Text>
