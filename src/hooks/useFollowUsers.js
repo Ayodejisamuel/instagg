@@ -59,7 +59,7 @@ const useFollower = (userId) => {
         const updatedFollowers = [...userProfile.followers, authUser.uid];
       
         setAuthUser({ ...authUser, following: updatedFollowing });
-        // setUserProfile({ ...userProfile, followers: updatedFollowers });
+        setUserProfile({ ...userProfile, followers: updatedFollowers });
       
         localStorage.setItem("user-info", JSON.stringify({ ...authUser, following: updatedFollowing }));
         setIsFollowing(true);

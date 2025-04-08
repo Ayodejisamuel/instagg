@@ -1,11 +1,11 @@
- # Instagg - React Firebase App
+ # Instagg - React (Vite) Firebase App
 Instagg is a social media platform model after Instagram that allows users to sign up, sign in, and interact with posts, all powered by Firebase for authentication, Firestore for data storage, and Firebase Storage for media handling.
 
 #Features
 User Authentication: Users can sign up, log in, and authenticate using Firebase Authentication.
 
 
-Firestore Database: User data and other app-related information are stored in Firestore.
+Firestore Database: User data and other app-related information are stored in Firestore like Follower and Following count
 
 
 Media Uploads: Due to Firestore Free plan limitations users can't upload images and other media files to Firebase Storage.
