@@ -1,6 +1,6 @@
 import React from "react";
 import { Tooltip,Box, Text  } from "@chakra-ui/react";
-import { NotificationsLogo } from "../../assets/constants";
+import {  SearchLogo} from "../../assets/constants";
 import  {Link }  from "react-router-dom";
 
 const  Search = () => {
@@ -25,7 +25,8 @@ return (
                 _hover={{ bg: "whiteAlpha.400" }}                borderRadius={6}
                 p={2}
               >
-      <NotificationsLogo />
+ <SearchLogo />
+ 
                 <Text display={{ base: "none", md: "block" }} fontSize="sm">
                   Search
                 </Text>

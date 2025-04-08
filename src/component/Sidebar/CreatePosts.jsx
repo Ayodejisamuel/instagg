@@ -1,17 +1,13 @@
 import React from "react";
-import { Tooltip,Box, Text, Avatar  } from "@chakra-ui/react";
-import { NotificationsLogo } from "../../assets/constants";
+import { Tooltip,Box, Text  } from "@chakra-ui/react";
+import { CreatePostLogo } from "react-icons/ai";
 import  {Link }  from "react-router-dom";
-import useAuthStore from "../../store/authStore";
-
-const ProfileAvatar = () => {
-
-  const authUser = useAuthStore( (state) => state.user)
+const CreatePost = () => {
 
 return (
     <div>
 <Tooltip
-             label={'Notifications'}
+             label={'Home'}
               placement="right"
               openDelay={500}
               hasArrow
@@ -20,18 +16,17 @@ return (
             >
               <Box
                 as={Link}
-                to={` /${authUser?.username}`}
-                display="flex" 
+                to={"/"}
+                display="flex"
                 justifyContent={{ base: "center", md: "left" }}
                 alignItems="center"
                 gap={4}
                 _hover={{ bg: "whiteAlpha.400" }}                borderRadius={6}
                 p={2}
               >
- 
-<Avatar size={'sm'} src={authUser?.profilePicUrl || ''}  />
+ <CreatePostLogo />
                 <Text display={{ base: "none", md: "block" }} fontSize="sm">
-                  Profile
+                  Create
                 </Text>
               </Box>
             </Tooltip>        
@@ -40,4 +35,4 @@ return (
 }
 
 
-export default ProfileAvatar ;
+export default  CreatePost;
