@@ -16,7 +16,7 @@ const SuggestedHeader = () => {
       <Flex gap={4} alignItems={"center"}>
         <Link to={authUser.userName}>
           <Avatar
-            name="Deji"
+            name={authUser.userName}
             size="sm"
             src={authUser.profilePicUrl}
             alt={"profilePic"}

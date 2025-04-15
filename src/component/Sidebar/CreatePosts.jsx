@@ -1,6 +1,6 @@
 import React from "react";
 import { Tooltip,Box, Text  } from "@chakra-ui/react";
-import { CreatePostLogo } from "react-icons/ai";
+import { CreatePostLogo } from  "../../assets/constants";
 import  {Link }  from "react-router-dom";
 const CreatePost = () => {
 
