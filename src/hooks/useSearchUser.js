@@ -19,6 +19,7 @@ const SearchUser = () => {
     },
   };
   const getUserProfile = async (userName) => {
+    setIsLoading(true)
     try {
       const q = query(
         collection(firestore, "users"),
@@ -26,12 +27,12 @@ const SearchUser = () => {
       );
       const querySnapShot = await getDocs(q);
       if (querySnapShot.empty)
-        return toast.error(`No user found ${error.message}`, toastOptions);
+        return toast.error(`No user found , toastOptions`);
       querySnapShot.forEach((doc) => {
         setUser(doc.data());
       });
     } catch (error) {
-      toast.error("Error fetching data", error.message);
+      toast.error(`Error Fetching data ${error.message}`, toastOptions);
       setUser(null);
     } finally {
       setIsLoading(false);
