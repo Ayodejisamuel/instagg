@@ -18,6 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { SearchLogo } from "../../assets/constants";
 import SearchUser from "../../hooks/useSearchUser";
+import SuggestedUsers from '../SuggestedUser/SuggestedUsers'
 
 const Search = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -84,6 +85,7 @@ const Search = () => {
                 </Button>
               </Flex>
             </form>
+            {user && <SuggestedUsers user={user} />}
           </ModalBody>
         </ModalContent>
       </Modal>
