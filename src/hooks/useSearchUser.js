@@ -35,6 +35,7 @@ const SearchUser = () => {
       setUser(null);
     } finally {
       setIsLoading(false);
+      console.log('NOw')
     }
   };
   return { loading, getUserProfile, user };
