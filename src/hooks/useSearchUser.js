@@ -7,7 +7,7 @@ const SearchUser = () => {
   const [user, setUser] = useState(null);
   const toastOptions = {
     position: "bottom-right",
-    autoClose: 8000,
+    autoClose: 5000,
     pauseOnHover: true,
     draggable: true,
     theme: "dark",
@@ -27,7 +27,7 @@ const SearchUser = () => {
       );
       const querySnapShot = await getDocs(q);
       if (querySnapShot.empty)
-        return toast.error(`No user found , toastOptions`);
+        return toast.error("No user found ", toastOptions);
       querySnapShot.forEach((doc) => {
         setUser(doc.data());
       });
