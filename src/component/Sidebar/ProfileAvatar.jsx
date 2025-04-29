@@ -4,44 +4,36 @@ import { Link } from "react-router-dom";
 import useAuthStore from "../../store/authStore";
 
 const ProfileAvatar = () => {
-  const authUserr = useAuthStore((state) => state.user);
-  const path = authUserr.userName || "default";
+  const authUser = useAuthStore((state) => state.user);
+  const path = authUser.userName || "default";
+  // const authUser = userAuthStore((state) => state.user)
 
   return (
-    <div>
-      <Tooltip
-        label={"Notifications"}
-        placement="right"
-        openDelay={500}
-        hasArrow
+    <Tooltip label="Profile" placement="right" openDelay={500} hasArrow>
+      <Box
+        as={Link}
+        to={path}
+        display="flex"
+        alignItems="center"
+        justifyContent={{ base: "center", md: "flex-start" }}
+        gap={4}
+        _hover={{ bg: "whiteAlpha.400" }}
+        borderRadius={6}
+        p={2}
         ml={1}
-        display={{ base: "block", md: "none" }}
       >
-        <Box
-          as={Link}
-          to={authUserr.userName}
-          display="flex"
-          justifyContent={{ base: "center", md: "left" }}
-          alignItems="center"
-          gap={4}
-          _hover={{ bg: "whiteAlpha.400" }}
-          borderRadius={6}
-          p={2}
-        >
-          <Link to={authUserr.userName}>
-            <Avatar
-              name={authUserr.userName}
-              size="sm"
-              src={authUserr.profilePicUrl}
-              alt={"profilePic"}
-            />
-          </Link>
-          <Text display={{ base: "none", md: "block" }} fontSize="sm">
-            Profile
-          </Text>
-        </Box>
-      </Tooltip>
-    </div>
+        <Avatar
+          name={authUser.userName}
+          size="sm"
+          src={authUser.profilePicUrl}
+          alt="profilePic"
+          
+        />
+        <Text display={{ base: "none", md: "block" }} fontSize="sm">
+          Profile
+        </Text>
+      </Box>
+    </Tooltip>
   );
 };
 

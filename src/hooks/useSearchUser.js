@@ -5,6 +5,7 @@ import { firestore } from "../firebase/firebase";
 const SearchUser = () => {
   const [loading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
+  
   const toastOptions = {
     position: "bottom-right",
     autoClose: 5000,
