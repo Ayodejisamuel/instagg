@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import useAuthStore from "../../store/authStore";
 
 const ProfileAvatar = () => {
-  const authUser = useAuthStore((state) => state.user);
-  const path = authUser.userName || "default";
+  const authUserr = useAuthStore((state) => state.user);
+
+  if (!authUserr) return null;
+  const path = authUserr.userName || "default";
   // const authUser = userAuthStore((state) => state.user)
 
   return (
@@ -23,9 +25,9 @@ const ProfileAvatar = () => {
         ml={1}
       >
         <Avatar
-          name={authUser.userName}
+          name={authUserr.userName}
           size="sm"
-          src={authUser.profilePicUrl}
+          src={authUserr.profilePicUrl}
           alt="profilePic"
           
         />
