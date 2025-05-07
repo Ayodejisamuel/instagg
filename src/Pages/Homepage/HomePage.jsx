@@ -4,7 +4,7 @@ import FeedData from "../../component/FeedPosts/FeedData";
 import SuggestedUsers from "../../component/SuggestedUser/SuggestedUsers";
 
 
-const HomePage = () => {
+const HomePage = () => { 
   return (
     
       <Container maxW={"container.lg"}>

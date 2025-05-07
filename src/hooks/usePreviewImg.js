@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 const usePreviewImg = () => {
   const toastOptions = {
     position: "bottom-right",
-    autoClose: 5000, // Reduced time for better UX
+    autoClose: 5000, 
     pauseOnHover: true,
     draggable: true,
     theme: "dark",
