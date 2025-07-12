@@ -2,7 +2,7 @@ import React from "react";
 import { Tooltip, Box, Text, Avatar } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import useAuthStore from "../../store/authStore";
-import Navbar  from "../Navbar/Navbar";
+// import Navbar  from "../Navbar/Navbar";
 
 const ProfileAvatar = () => {
   const authUserr = useAuthStore((state) => state.user);
@@ -36,7 +36,7 @@ const ProfileAvatar = () => {
           Profile
         </Text>
       </Box>
-      <Navbar />
+      {/* <Navbar /> */}
     </Tooltip>
   );
 };
