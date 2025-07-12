@@ -21,7 +21,7 @@ const FeedData = () => {
     {
       username: "determinant_",
       img: "/instagg/profilepic.jpg",
-      avatar: "https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/profilepic_sbwsbl.jpg",
+      avatar: "https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358633/img4_t1spsf.jpg ",
     },
     {
       username: "ishola_faith10",
