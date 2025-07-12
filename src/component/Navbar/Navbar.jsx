@@ -1,6 +1,5 @@
 import { Container, Image, Flex, Link, Button } from "@chakra-ui/react";
 import { InstagramLogo } from "../../assets/constants";
-
 const Navbar = () => {
   return (
     <Container maxW={"container.lg"} my={4}>
@@ -32,4 +31,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbar

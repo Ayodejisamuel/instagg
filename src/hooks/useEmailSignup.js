@@ -35,7 +35,7 @@ const loginUser = useAuthStore(state => state.login)
         return;
       }
          
-  // check if username is already exist
+  // check if username already exist
   const usersRef = collection(firestore, "users");
 
   // Create a query against the collection.
@@ -45,6 +45,7 @@ const loginUser = useAuthStore(state => state.login)
       if(!querySnapshot.empty) {
         toast.error("Username already exist choose another", toastOptions);
           return 
+
       }
       // Create user with email and password
       const newUser = await createUserWithEmailAndPassword(input.email, input.password);
@@ -68,6 +69,7 @@ const loginUser = useAuthStore(state => state.login)
           following: [],
           posts: [],
           createdAt: serverTimestamp(),
+
         };
         
         // Save user data to Firestore

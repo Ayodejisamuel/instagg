@@ -26,7 +26,7 @@ const FeedData = () => {
     {
       username: "ishola_faith10",
       img: "/instagg/img3.png",
-      avatar: "https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/img3_j6if3q.jpg",
+      avatar: "https://res.cloudinary.com/dfkiftgfj/image/upload/v1735358631/img2_jtbspt.jpg",
     },
     {
       username: "maverick_",
